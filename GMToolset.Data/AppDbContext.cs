@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GMToolset.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GMToolset.Data
 {
@@ -7,5 +8,7 @@ namespace GMToolset.Data
 		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
 		{
 		}
-	}
+
+        public DbSet<TestModel> TestModels { get; set; }
+    }
 }
