@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configs\Automapper\" />
     <Folder Include="DTOs\" />
   </ItemGroup>
 

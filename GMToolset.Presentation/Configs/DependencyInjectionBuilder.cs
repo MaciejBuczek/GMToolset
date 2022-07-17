@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using GMToolset.Data;
+﻿using GMToolset.Data;
 using GMToolset.Services.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -29,7 +28,8 @@ namespace GMToolset.Presentation.Configs
                    o.TokenLifespan = TimeSpan.FromHours(2));
 
             //Automapper setup
-            builder.Services.AddAutoMapper(Assembly.GetAssembly(this.GetType()));
+            var assembly = Assembly.GetAssembly(GetType());
+            builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(Services.Data.Constants)));
         }
     }
 }
