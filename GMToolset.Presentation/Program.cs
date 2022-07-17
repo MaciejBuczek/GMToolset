@@ -18,7 +18,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Services.Configure<AuthMessageSenderOptions>(o =>
-o.SendGridKey = builder.Configuration.GetSection("SendGridKey").Value);
+o.SendGridKey = builder.Configuration.GetSection(Environment.GetEnvironmentVariable("SENDGRIDKEY")).Value);
 
 builder.Services.Configure<DataProtectionTokenProviderOptions>(o =>
        o.TokenLifespan = TimeSpan.FromHours(2));
