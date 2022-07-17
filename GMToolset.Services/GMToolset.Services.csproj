@@ -4,7 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UserSecretsId>a1a4389e-a864-4eb7-8f10-e150b1329296</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SendGrid" Version="9.28.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\GMToolset.Data\GMToolset.Data.csproj" />
