@@ -26,10 +26,6 @@
     <ProjectReference Include="..\GMToolset.Services\GMToolset.Services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\" />
-  </ItemGroup>
-
   <Target Name="PrePublishTarget" AfterTargets="Publish">
     <Exec Command="dotnet ef database update" />
   </Target>
