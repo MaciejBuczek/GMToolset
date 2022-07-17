@@ -1,9 +1,17 @@
 ﻿using GMToolset.Data;
+using GMToolset.Data.Repositories;
+using GMToolset.Data.Repositories.Interfaces;
+using GMToolset.Services.Interfaces;
+using GMToolset.Services.Models.Warhammer4;
 using GMToolset.Services.Services;
+using GMToolset.Services.Services.Model_Services;
+using GMToolset.Services.Services.Model_Services.Warhammer4;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using GMTEntities = GMToolset.Data.Entities.Warhammer4;
+using GMTModels = GMToolset.Services.Models.Warhammer4;
 
 namespace GMToolset.Presentation.Configs
 {
@@ -30,6 +38,12 @@ namespace GMToolset.Presentation.Configs
             //Automapper setup
             var assembly = Assembly.GetAssembly(GetType());
             builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(Services.Data.Constants)));
+
+            //Services
+            builder.Services.AddTransient<IModelService<GMTModels.CharacterSheet>, CharacterSheetService>();
+
+            //Data
+            builder.Services.AddTransient<IRepository<GMTEntities.CharacterSheet>, CharacterSheetRepository>();
         }
     }
 }
