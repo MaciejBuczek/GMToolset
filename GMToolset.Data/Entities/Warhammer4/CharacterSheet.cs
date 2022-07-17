@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace GMToolset.Data.Entities.Warhammer4
 {
@@ -34,45 +29,35 @@ namespace GMToolset.Data.Entities.Warhammer4
         [MaxLength(100)]
         public string Eyes { get; set; }
         [Required]
-        public int WeaponSkill{ get; set; }
+        public int WeaponSkill { get; set; }
         public int WeaponSkillAdv { get; set; }
-        public int WeaponSkillCurrent { get; set; }
         [Required]
         public int BallisticSkill { get; set; }
         public int BallisticSkillAdv { get; set; }
-        public int BallisticSkillCurrent { get; set; }
         [Required]
         public int Strength { get; set; }
         public int StrengthAdv { get; set; }
-        public int StrengthCurrent { get; set; }
         [Required]
         public int Toughness { get; set; }
         public int ToughnessAdv { get; set; }
-        public int ToughnessCurrent { get; set; }
         [Required]
         public int Initiattive { get; set; }
         public int InitiattiveAdv { get; set; }
-        public int InitiattiveCurrent { get; set; }
         [Required]
         public int Agility { get; set; }
         public int AgilityAdv { get; set; }
-        public int AgilityCurrent { get; set; }
         [Required]
         public int Dexterity { get; set; }
         public int DexterityAdv { get; set; }
-        public int DexterityCurrent { get; set; }
         [Required]
         public int Intelligence { get; set; }
         public int IntelligenceAdv { get; set; }
-        public int IntelligenceCurrent { get; set; }
         [Required]
         public int Willpower { get; set; }
         public int WillpowerAdv { get; set; }
-        public int WillpowerCurrent { get; set; }
         [Required]
         public int Fellowship { get; set; }
         public int FellowshipAdv { get; set; }
-        public int FellowshipCurrent { get; set; }
         public int Wounds { get; set; }
         public int Fate { get; set; }
         public int Fortune { get; set; }
