@@ -15,4 +15,10 @@
     <ProjectReference Include="..\GMToolset.Data\GMToolset.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Services\Model Services\" />
+  </ItemGroup>
+
 </Project>
