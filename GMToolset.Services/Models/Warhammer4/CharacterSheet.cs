@@ -1,4 +1,4 @@
-﻿namespace GMToolset.Services.Models
+﻿namespace GMToolset.Services.Models.Warhammer4
 {
     public class CharacterSheet
     {
