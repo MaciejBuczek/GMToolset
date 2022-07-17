@@ -1,15 +1,15 @@
-﻿using GMToolset.Data.Models;
+﻿using GMToolset.Data.Entities.Warhammer4;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace GMToolset.Data
 {
     public class AppDbContext : IdentityDbContext
-	{
-		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-		{
-		}
+    {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
 
-        public DbSet<TestModel> TestModels { get; set; }
+        public DbSet<CharacterSheet> CharacterSheets { get; set; }
     }
 }
