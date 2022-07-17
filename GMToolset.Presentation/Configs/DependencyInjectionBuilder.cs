@@ -1,8 +1,10 @@
-﻿using GMToolset.Data;
+﻿using AutoMapper;
+using GMToolset.Data;
 using GMToolset.Services.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace GMToolset.Presentation.Configs
 {
@@ -25,6 +27,9 @@ namespace GMToolset.Presentation.Configs
 
             builder.Services.Configure<DataProtectionTokenProviderOptions>(o =>
                    o.TokenLifespan = TimeSpan.FromHours(2));
+
+            //Automapper setup
+            builder.Services.AddAutoMapper(Assembly.GetAssembly(this.GetType()));
         }
     }
 }
