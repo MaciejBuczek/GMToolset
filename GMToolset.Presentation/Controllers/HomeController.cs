@@ -28,13 +28,14 @@ namespace GMToolset.Presentation.Controllers
             return View();
         }
 
-        public IActionResult LanguageToggle(string cultureName)
+        [HttpPost]
+        public IActionResult LanguageToggle(string cultureName, string returnUrl)
         {
             Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(cultureName)), new CookieOptions
             {
                 Expires = DateTimeOffset.Now.AddDays(30)
             });
-            return RedirectToAction(nameof(Index));
+            return LocalRedirect(returnUrl);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
