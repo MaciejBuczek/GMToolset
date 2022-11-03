@@ -1,4 +1,5 @@
 ﻿using GMToolset.Presentation.Models;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Localization;
 using System.Diagnostics;
@@ -25,6 +26,15 @@ namespace GMToolset.Presentation.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult ToggleCulture(string cultureName)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(cultureName)), new CookieOptions
+            {
+                Expires = DateTimeOffset.Now.AddDays(30)
+            });
+            return RedirectToAction(nameof(Index));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
