@@ -28,7 +28,7 @@ namespace GMToolset.Presentation.Controllers
             return View();
         }
 
-        public IActionResult ToggleCulture(string cultureName)
+        public IActionResult LanguageToggle(string cultureName)
         {
             Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(cultureName)), new CookieOptions
             {
