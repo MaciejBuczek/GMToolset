@@ -3,7 +3,7 @@
 
 @{
     var culture = Context.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>();
-    var cultureList = localizationOptions.Value.SupportedUICultures.Select(x => new SelectListItem
+    var cultureList = localizationOptions?.Value?.SupportedUICultures?.Select(x => new SelectListItem
             {
                 Value = x.Name,
                 Text = x.Name
@@ -12,7 +12,10 @@
 }
 
 <div>
-    <form asp-action="LanguageToggle" asp-controller="Home" method="post" asp-route-returnUrl="@returnUrl">
-        <select name="cultureName" asp-for="@(culture.RequestCulture.UICulture.Name)" asp-items="cultureList" onchange="this.form.submit();"></select>
-    </form>
+    @if (culture != null && cultureList != null)
+    {
+        <form asp-action="LanguageToggle" asp-controller="Home" method="post" asp-route-returnUrl="@returnUrl">
+            <select name="cultureName" asp-for="@(culture.RequestCulture.UICulture.Name)" asp-items="cultureList" onchange="this.form.submit();"></select>
+        </form>
+    }
 </div>
