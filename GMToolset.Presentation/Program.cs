@@ -32,7 +32,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     var supportedCultures = new List<CultureInfo>
     {
         new CultureInfo("pl"),
-        new CultureInfo("en")
+        new CultureInfo("en-us")
     };
     options.DefaultRequestCulture = new RequestCulture("pl");
     options.SupportedCultures = supportedCultures;
