@@ -4,7 +4,7 @@
 @{
     string GetCultureFlagPath(string cultureName)
     {
-        return string.IsNullOrEmpty(cultureName) ? string.Empty : $"/lib/flags/{cultureName}.svg";
+        return string.IsNullOrEmpty(cultureName) ? string.Empty : $"/lib/flags/{cultureName}.png";
     }
 }
 
@@ -22,7 +22,7 @@
     @if (currentCulture != null && cultureList != null)
     {
         <div class="dropdown-triangle">
-            <button class="dropbtn">Products</button>
+            <button class="dropbtn">Language</button>
             <div class="dropdown-content">
                 @foreach(var culture in cultureList)
                 {

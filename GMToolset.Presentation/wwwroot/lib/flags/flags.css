@@ -1,5 +1,6 @@
 ﻿.flag
 {
-    height: 4vh;
-    width: 3vw;
+    border:1px solid black;
+    height: 30px;
+    width: 50px;
 }
