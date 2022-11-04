@@ -1,0 +1,75 @@
+﻿/* Dropdown container - needed to position the dropdown content */
+.dropdown-triangle
+{
+    float: left;
+    overflow: hidden;
+}
+
+/* Style the dropdown button to fit inside the topnav */
+.dropdown-triangle .dropbtn {
+    font-size: 13px;
+    color:rgba(255,255,255,.55);
+    text-transform:uppercase;
+    font-weight:500;
+    border: none;
+    outline: none;
+    padding: 1em;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content
+{
+    display: none; /*Hides the content*/
+    position: absolute;
+    background-color: #fff;
+    min-width: 80px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5); /*Adds a drop shadow*/
+    z-index: 1;
+    border-radius: 2%;
+}
+
+.dropdown-content:after
+{
+    content: ''; /* Required to display content */
+    position: absolute; /* Sets the position absolute to the top div */
+    top: 0;
+    left: 50%; /* position the little arrow */
+    margin-left: -15px;
+    margin-top: -15px; /* Set margin equal to border px */
+    width: 0;
+    z-index: 1;
+    height: 0;
+    border-bottom: solid 15px #FFF; /* Creates the arrow pointing up, to change to a notch instead user border-top */
+    border-left: solid 15px transparent; /* Creates triangle effect */
+    border-right: solid 15px transparent; /* Creates triangle effect */
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a
+{
+    float: none;
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+/* Change the opacity of the topnav links on hover, do whatever styling you want. */
+.dropdown-triangle:hover .dropbtn {
+    opacity: .7;
+}
+
+/* Change the opacity of the drop down menu links on hover, do whatever styling you want. */
+.dropdown-content a:hover
+{
+    opacity: .6;
+}
+
+/* Show the dropdown menu when the user moves the mouse over the dropdown button */
+.dropdown-triangle:hover .dropdown-content {
+    display: block;
+}

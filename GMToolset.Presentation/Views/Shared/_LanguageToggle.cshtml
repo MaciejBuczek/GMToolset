@@ -2,20 +2,35 @@
 @inject Microsoft.Extensions.Options.IOptions<Microsoft.AspNetCore.Builder.RequestLocalizationOptions> localizationOptions
 
 @{
-    var culture = Context.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>();
+    string GetCultureFlagPath(string cultureName)
+    {
+        return string.IsNullOrEmpty(cultureName) ? string.Empty : $"/lib/flags/{cultureName}.png";
+    }
+}
+
+@{
+    var currentCulture = Context.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>();
     var cultureList = localizationOptions?.Value?.SupportedUICultures?.Select(x => new SelectListItem
             {
                 Value = x.Name,
-                Text = x.Name
+                Text = GetCultureFlagPath(x.Name)
             }).ToList();
     var returnUrl = string.IsNullOrWhiteSpace(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}{Context.Request.QueryString}";
 }
 
-<div>
-    @if (culture != null && cultureList != null)
+<div class="dropdown-triangle">
+    @if (currentCulture != null && cultureList != null)
     {
-        <form asp-action="LanguageToggle" asp-controller="Home" method="post" asp-route-returnUrl="@returnUrl">
-            <select name="cultureName" asp-for="@(culture.RequestCulture.UICulture.Name)" asp-items="cultureList" onchange="this.form.submit();"></select>
-        </form>
+        <div class="dropdown-triangle">
+            <button class="dropbtn">Language</button>
+            <div class="dropdown-content">
+                @foreach(var culture in cultureList)
+                {
+                    <a asp-controller="Home" asp-action="LanguageToggle" asp-route-cultureName="@culture.Value" asp-route-returnUrl="@returnUrl">
+                        <img class="flag" src="@culture.Text"/>
+                    </a>
+                }
+            </div>
+        </div>
     }
 </div>
