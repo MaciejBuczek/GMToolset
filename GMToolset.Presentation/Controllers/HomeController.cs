@@ -28,7 +28,6 @@ namespace GMToolset.Presentation.Controllers
             return View();
         }
 
-        [HttpPost]
         public IActionResult LanguageToggle(string cultureName, string returnUrl)
         {
             Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(cultureName)), new CookieOptions
