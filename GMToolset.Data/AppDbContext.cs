@@ -1,4 +1,4 @@
-﻿using GMToolset.Data.Entities.BattleManager;
+﻿using GMToolset.Data.Entities.QuickBattleManager;
 using GMToolset.Data.Entities.Warhammer4;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

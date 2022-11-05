@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GMToolset.Data.Entities.BattleManager
+namespace GMToolset.Data.Entities.QuickBattleManager
 {
     public class QuickSession
     {
