@@ -1,4 +1,5 @@
-﻿using GMToolset.Data.Entities.Warhammer4;
+﻿using GMToolset.Data.Entities.BattleManager;
+using GMToolset.Data.Entities.Warhammer4;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,5 +12,8 @@ namespace GMToolset.Data
         }
 
         public DbSet<CharacterSheet> CharacterSheets { get; set; }
+        public DbSet<Participant> Participant { get; set; }
+        public DbSet<QuickSession> QuickSessions { get; set; }
+
     }
 }
