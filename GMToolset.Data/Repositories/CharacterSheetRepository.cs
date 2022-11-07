@@ -28,12 +28,12 @@ namespace GMToolset.Data.Repositories
 
         public IEnumerable<CharacterSheet> GetAll()
         {
-            return _appDbContext.CharacterSheets.Include(x => x.Attributes).AsEnumerable();
+            return _appDbContext.CharacterSheets.Include(x => x.Characteristics).AsEnumerable();
         }
 
         public CharacterSheet GetById(Guid id)
         {
-            return _appDbContext.CharacterSheets.Where(x => x.Id == id).Include(x => x.Attributes).FirstOrDefault();
+            return _appDbContext.CharacterSheets.Where(x => x.Id == id).Include(x => x.Characteristics).FirstOrDefault();
         }
 
         public void Update(CharacterSheet entity)

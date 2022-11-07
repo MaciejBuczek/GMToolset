@@ -48,7 +48,7 @@ namespace GMToolset.Presentation.Controllers
                 ExpCurrent = 0,
                 ExpSpent = 0,
                 Movement = 2,
-                Attributes = new Attributes
+                Characteristics = new Characteristics
                     {
                         WeaponSkill = 20,
                         WeaponSkillAdv = 5,

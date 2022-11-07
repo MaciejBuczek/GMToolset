@@ -44,6 +44,6 @@
 
         public int Movement { get; set; }
 
-        public Attributes Attributes { get; set; }
+        public Characteristics Characteristics { get; set; }
     }
 }

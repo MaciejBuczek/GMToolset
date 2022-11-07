@@ -2,7 +2,7 @@
 
 namespace GMToolset.Services.Models.Warhammer4.Character
 {
-    public class Attributes
+    public class Characteristics
     {
         public Guid Id { get; set; }
 
