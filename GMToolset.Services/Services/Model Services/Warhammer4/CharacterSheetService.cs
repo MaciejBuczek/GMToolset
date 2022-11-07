@@ -1,20 +1,21 @@
 ﻿using AutoMapper;
 using GMToolset.Data.Repositories.Interfaces;
 using GMToolset.Services.Interfaces;
-using GMTEntities = GMToolset.Data.Entities.Warhammer4;
-using GMTModels = GMToolset.Services.Models.Warhammer4;
+
+using _Entities = GMToolset.Data.Entities.Warhammer4.Character;
+using _Models = GMToolset.Services.Models.Warhammer4.Character;
 
 namespace GMToolset.Services.Services.Model_Services.Warhammer4
 {
-    public class CharacterSheetService : ModelServiceBase<GMTEntities.CharacterSheet>, IModelService<GMTModels.CharacterSheet>
+    public class CharacterSheetService : ModelServiceBase<_Entities.CharacterSheet>, IModelService<_Models.CharacterSheet>
     {
-        public CharacterSheetService(IRepository<GMTEntities.CharacterSheet> repository, IMapper mapper) : base(repository, mapper)
+        public CharacterSheetService(IRepository<_Entities.CharacterSheet> repository, IMapper mapper) : base(repository, mapper)
         {
         }
 
-        public void Add(GMTModels.CharacterSheet entity)
+        public void Add(_Models.CharacterSheet entity)
         {
-            _repository.Add(_mapper.Map<GMTEntities.CharacterSheet>(entity));
+            _repository.Add(_mapper.Map<_Entities.CharacterSheet>(entity));
         }
 
         public void Delete(Guid id)
@@ -22,19 +23,19 @@ namespace GMToolset.Services.Services.Model_Services.Warhammer4
             _repository.Delete(id);
         }
 
-        public IEnumerable<GMTModels.CharacterSheet> GetAll()
+        public IEnumerable<_Models.CharacterSheet> GetAll()
         {
-            return _mapper.Map<IEnumerable<GMTModels.CharacterSheet>>(_repository.GetAll());
+            return _mapper.Map<IEnumerable<_Models.CharacterSheet>>(_repository.GetAll());
         }
 
-        public GMTModels.CharacterSheet GetById(Guid id)
+        public _Models.CharacterSheet GetById(Guid id)
         {
-            return _mapper.Map<GMTModels.CharacterSheet>(_repository.GetById(id));
+            return _mapper.Map<_Models.CharacterSheet>(_repository.GetById(id));
         }
 
-        public void Update(GMTModels.CharacterSheet entity)
+        public void Update(_Models.CharacterSheet entity)
         {
-            _repository.Update(_mapper.Map<GMTEntities.CharacterSheet>(entity));
+            _repository.Update(_mapper.Map<_Entities.CharacterSheet>(entity));
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using GMToolset.Services.Interfaces;
-using GMToolset.Services.Models.Warhammer4;
-using GMToolset.Services.Services.Model_Services.Warhammer4;
+using GMToolset.Services.Models.Warhammer4.Character;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMToolset.Presentation.Controllers
@@ -40,26 +39,6 @@ namespace GMToolset.Presentation.Controllers
                 Height = "161",
                 Hair = "None",
                 Eyes = "Brown",
-                WeaponSkill  = 20,
-                WeaponSkillAdv = 5,
-                BallisticSkill = 15, 
-                BallisticSkillAdv = 0,
-                Strength = 30,
-                StrengthAdv = 5, 
-                Toughness = 32, 
-                ToughnessAdv = 5,
-                Initiattive = 15,
-                InitiattiveAdv = 0,
-                Agility = 20,
-                AgilityAdv = 2,
-                Dexterity = 20, 
-                DexterityAdv = 5,
-                Intelligence = 15,
-                IntelligenceAdv = 0,
-                Willpower = 15, 
-                WillpowerAdv = 5,
-                Fellowship = 35,
-                FellowshipAdv = 10,
                 Wounds  = 9,
                 Fate = 2, 
                 Fortune = 2,
@@ -68,7 +47,30 @@ namespace GMToolset.Presentation.Controllers
                 Motivation = String.Empty,
                 ExpCurrent = 0,
                 ExpSpent = 0,
-                Movement = 2
+                Movement = 2,
+                Attributes = new Attributes
+                    {
+                        WeaponSkill = 20,
+                        WeaponSkillAdv = 5,
+                        BallisticSkill = 15,
+                        BallisticSkillAdv = 0,
+                        Strength = 30,
+                        StrengthAdv = 5,
+                        Toughness = 32,
+                        ToughnessAdv = 5,
+                        Initiattive = 15,
+                        InitiattiveAdv = 0,
+                        Agility = 20,
+                        AgilityAdv = 2,
+                        Dexterity = 20,
+                        DexterityAdv = 5,
+                        Intelligence = 15,
+                        IntelligenceAdv = 0,
+                        Willpower = 15,
+                        WillpowerAdv = 5,
+                        Fellowship = 35,
+                        FellowshipAdv = 10,
+                    }
                 });
 
             return Ok();

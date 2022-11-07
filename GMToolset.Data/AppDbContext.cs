@@ -1,4 +1,4 @@
-﻿using GMToolset.Data.Entities.Warhammer4;
+﻿using GMToolset.Data.Entities.Warhammer4.Character;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

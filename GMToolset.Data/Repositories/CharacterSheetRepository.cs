@@ -1,4 +1,4 @@
-﻿using GMToolset.Data.Entities.Warhammer4;
+﻿using GMToolset.Data.Entities.Warhammer4.Character;
 using GMToolset.Data.Repositories.Interfaces;
 
 namespace GMToolset.Data.Repositories

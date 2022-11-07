@@ -2,7 +2,7 @@
 using GMToolset.Data.Repositories;
 using GMToolset.Data.Repositories.Interfaces;
 using GMToolset.Services.Interfaces;
-using GMToolset.Services.Models.Warhammer4;
+using GMToolset.Services.Models.Warhammer4.Character;
 using GMToolset.Services.Services;
 using GMToolset.Services.Services.Model_Services;
 using GMToolset.Services.Services.Model_Services.Warhammer4;
@@ -40,10 +40,10 @@ namespace GMToolset.Presentation.Configs
             builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(Services.Data.Constants)));
 
             //Services
-            builder.Services.AddTransient<IModelService<GMTModels.CharacterSheet>, CharacterSheetService>();
+            builder.Services.AddTransient<IModelService<CharacterSheet>, CharacterSheetService>();
 
             //Data
-            builder.Services.AddTransient<IRepository<GMTEntities.CharacterSheet>, CharacterSheetRepository>();
+            builder.Services.AddTransient<IRepository<GMTEntities.Character.CharacterSheet>, CharacterSheetRepository>();
         }
     }
 }
