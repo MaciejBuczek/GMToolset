@@ -1,8 +1,9 @@
 ﻿@model GMToolset.Services.Models.Warhammer4.Character.CharacterSheet
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 
 <!-- Character Name --> 
 <div class="row">
-    <div class=" h1 text-center">Stary Cap</div>
+    <div class=" h1 text-center">@Model.Name</div>
 </div>
 
 <div class="row border-top pt-2">
@@ -13,13 +14,13 @@
             <div class="col">
                 <p>
                     <span class="fw-bold">Rasa:</span>
-                    <span class="ps-2">Człowiek</span>
+                    <span class="ps-2">@Model.Species</span>
                 </p>
             </div>
             <div class="col">
                 <p>
                     <span class="fw-bold">Klasa:</span>
-                    <span class="ps-2">Pospólstwo</span>
+                    <span class="ps-2">@Model.Class</span>
                 </p>
             </div>
         </div>
@@ -28,13 +29,13 @@
             <div class="col">
                 <p>
                     <span class="fw-bold">Profesja:</span>
-                    <span class="ps-2">Górnik</span>
+                    <span class="ps-2">@Model.Career</span>
                 </p>
             </div>
             <div class="col">
                 <p>
                     <span class="fw-bold">Poziom Profesji:</span>
-                    <span class="ps-2">Mistrz Górnictwa</span>
+                    <span class="ps-2">@Model.CarrierTier</span>
                 </p>
             </div>
         </div>
@@ -73,57 +74,57 @@
                     <thead>
                         <tr class="text-center">
                             <th scope="col"></th>
-                            <th scope="col"> <label for="@Model.Characteristics.WeaponSkill"/> </th>
-                            <th scope="col">US</th>
-                            <th scope="col">S</th>
-                            <th scope="col">Wt</th>
-                            <th scope="col">Zw</th>
-                            <th scope="col">I</th>
-                            <th scope="col">Zr</th>
-                            <th scope="col">Int</th>
-                            <th scope="col">SW</th>
-                            <th scope="col">Ogd</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.WeaponSkill)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.BallisticSkill)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.Strength)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.Toughness)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.Agility)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.Initiattive)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.Dexterity)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.Intelligence)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.Willpower)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.Fellowship)]</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="text-end">
                             <th scope="row" class="text-center">Początkowa</th>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
+                            <td>@Model.Characteristics.WeaponSkill</td>
+                            <td>@Model.Characteristics.BallisticSkill</td>
+                            <td>@Model.Characteristics.Strength</td>
+                            <td>@Model.Characteristics.Toughness</td>
+                            <td>@Model.Characteristics.Agility</td>
+                            <td>@Model.Characteristics.Initiattive</td>
+                            <td>@Model.Characteristics.Dexterity</td>
+                            <td>@Model.Characteristics.Intelligence</td>
+                            <td>@Model.Characteristics.Willpower</td>
+                            <td>@Model.Characteristics.Fellowship</td>
                         </tr>
                         <tr class="text-end">
                             <th scope="row" class="text-center">Rozwinięcia</th>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
+                            <td>@Model.Characteristics.WeaponSkillAdv</td>
+                            <td>@Model.Characteristics.BallisticSkillAdv</td>
+                            <td>@Model.Characteristics.StrengthAdv</td>
+                            <td>@Model.Characteristics.ToughnessAdv</td>
+                            <td>@Model.Characteristics.AgilityAdv</td>
+                            <td>@Model.Characteristics.InitiattiveAdv</td>
+                            <td>@Model.Characteristics.DexterityAdv</td>
+                            <td>@Model.Characteristics.IntelligenceAdv</td>
+                            <td>@Model.Characteristics.WillpowerAdv</td>
+                            <td>@Model.Characteristics.FellowshipAdv</td>
                         </tr>
                         <tr class="text-end">
                             <th scope="row" class="text-center">Aktualna</th>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
-                            <td>10</td>
+                            <td>@(Model.Characteristics.WeaponSkill + Model.Characteristics.WeaponSkillAdv)</td>
+                            <td>@(Model.Characteristics.BallisticSkill + Model.Characteristics.BallisticSkillAdv)</td>
+                            <td>@(Model.Characteristics.Strength + Model.Characteristics.StrengthAdv)</td>
+                            <td>@(Model.Characteristics.Toughness + Model.Characteristics.ToughnessAdv)</td>
+                            <td>@(Model.Characteristics.Agility + Model.Characteristics.AgilityAdv)</td>
+                            <td>@(Model.Characteristics.Initiattive + Model.Characteristics.InitiattiveAdv)</td>
+                            <td>@(Model.Characteristics.Dexterity + Model.Characteristics.DexterityAdv)</td>
+                            <td>@(Model.Characteristics.Intelligence + Model.Characteristics.IntelligenceAdv)</td>
+                            <td>@(Model.Characteristics.Willpower + Model.Characteristics.WillpowerAdv)</td>
+                            <td>@(Model.Characteristics.Fellowship + Model.Characteristics.FellowshipAdv)</td>
                         </tr>
                     </tbody>
                 </table>
