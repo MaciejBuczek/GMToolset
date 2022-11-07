@@ -8,7 +8,7 @@ namespace GMToolset.Services.Data.AutoMapperProfiles
         public CharacterSheetProfile()
         {
             CreateMap<GMToolset.Data.Entities.Warhammer4.Character.CharacterSheet, CharacterSheet>().ReverseMap();
-            CreateMap<GMToolset.Data.Entities.Warhammer4.Character.Attributes, Attributes>().ReverseMap();
+            CreateMap<GMToolset.Data.Entities.Warhammer4.Character.Characteristics, Attributes>().ReverseMap();
         }
     }
 }

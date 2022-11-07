@@ -1,5 +1,6 @@
 ﻿using GMToolset.Data.Entities.Warhammer4.Character;
 using GMToolset.Data.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace GMToolset.Data.Repositories
 {
@@ -27,12 +28,12 @@ namespace GMToolset.Data.Repositories
 
         public IEnumerable<CharacterSheet> GetAll()
         {
-            return _appDbContext.CharacterSheets.AsEnumerable();
+            return _appDbContext.CharacterSheets.Include(x => x.Attributes).AsEnumerable();
         }
 
         public CharacterSheet GetById(Guid id)
         {
-            return _appDbContext.CharacterSheets.Find(id);
+            return _appDbContext.CharacterSheets.Where(x => x.Id == id).Include(x => x.Attributes).FirstOrDefault();
         }
 
         public void Update(CharacterSheet entity)

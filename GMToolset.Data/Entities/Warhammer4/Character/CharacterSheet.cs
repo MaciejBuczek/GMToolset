@@ -58,6 +58,6 @@ namespace GMToolset.Data.Entities.Warhammer4.Character
 
         public int Movement { get; set; }
 
-        public Attributes Attributes { get; set; }
+        public Characteristics Attributes { get; set; }
     }
 }

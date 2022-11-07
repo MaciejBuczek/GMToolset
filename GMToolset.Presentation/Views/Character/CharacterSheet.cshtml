@@ -1,4 +1,6 @@
-﻿<!-- Character Name --> 
+﻿@model GMToolset.Services.Models.Warhammer4.Character.CharacterSheet
+
+<!-- Character Name --> 
 <div class="row">
     <div class=" h1 text-center">Stary Cap</div>
 </div>
@@ -71,7 +73,7 @@
                     <thead>
                         <tr class="text-center">
                             <th scope="col"></th>
-                            <th scope="col">WW</th>
+                            <th scope="col"> <label for="@Model.Attributes.WeaponSkill"/> </th>
                             <th scope="col">US</th>
                             <th scope="col">S</th>
                             <th scope="col">Wt</th>
@@ -159,7 +161,7 @@
             
         </div>
         <div  class="row">
-            <!-- Besic Skills --> 
+            <!-- Basic Skills --> 
             <p class="h4 fw-bold text-center">Umiejętności podstawowe</p>
             <div class="col-4">
                 <table class="table table-bordered">
