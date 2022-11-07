@@ -12,6 +12,7 @@ namespace GMToolset.Data.Repositories
         public void Add(CharacterSheet entity)
         {
             _appDbContext.Add(entity);
+            _appDbContext.SaveChanges();
         }
 
         public void Delete(Guid id)
