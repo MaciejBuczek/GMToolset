@@ -3,6 +3,7 @@ using System;
 using GMToolset.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GMToolset.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221108170245_translateionTableAdded")]
+    partial class translateionTableAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -184,25 +186,6 @@ namespace GMToolset.Data.Migrations
                     b.HasIndex("CharacteristicsId");
 
                     b.ToTable("CharacterSheets");
-                });
-
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.Skill", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("NameId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NameId");
-
-                    b.ToTable("Skills");
                 });
 
             modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Translation", b =>
@@ -433,17 +416,6 @@ namespace GMToolset.Data.Migrations
                         .HasForeignKey("CharacteristicsId");
 
                     b.Navigation("Characteristics");
-                });
-
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.Skill", b =>
-                {
-                    b.HasOne("GMToolset.Data.Entities.Warhammer4.Translation", "Name")
-                        .WithMany()
-                        .HasForeignKey("NameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Name");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
