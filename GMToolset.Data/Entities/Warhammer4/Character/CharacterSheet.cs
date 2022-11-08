@@ -40,24 +40,35 @@ namespace GMToolset.Data.Entities.Warhammer4.Character
         [MaxLength(100)]
         public string Eyes { get; set; }
 
+        [Required]
         public int Wounds { get; set; }
 
+        [Required]
         public int Fate { get; set; }
 
+        [Required]
         public int Fortune { get; set; }
 
+        [Required]
         public int Resilience { get; set; }
 
+        [Required]
         public int Resolve { get; set; }
 
+        [Required]
         public string Motivation { get; set; }
 
+        [Required]
         public int ExpCurrent { get; set; }
 
+        [Required]
         public int ExpSpent { get; set; }
 
+        [Required]
         public int Movement { get; set; }
 
-        public CharacterCharacteristics Characteristics { get; set; }
+        public List<CharacterCharacteristics> Characteristics { get; set; }
+
+        public List<CharacterSkills> Skills { get; set; }
     }
 }

@@ -7,6 +7,13 @@ namespace GMToolset.Data.Entities.Warhammer4.Character
         [Key]
         public Guid Id { get; set; }
 
-        public List<Characteristic> Characteristics { get; set; }
+        [Required]
+        public Characteristic Characteristics { get; set; }
+
+        [Required]
+        public int BaseValue { get; set; }
+
+        [Required]
+        public int Advancement { get; set; }
     }
 }
