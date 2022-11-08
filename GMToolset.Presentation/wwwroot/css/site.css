@@ -16,3 +16,20 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+@font-face {
+    font-family: 'living-stone';
+    src: url('../fonts/Livingst.ttf');
+}
+@font-face {
+    font-family: 'romantik';
+    src: url('../fonts/Romantik.ttf');
+}
+
+.living-stone{
+    font-family: living-stone;
+}
+
+.romantik{
+    font-family : romantik;
+}
