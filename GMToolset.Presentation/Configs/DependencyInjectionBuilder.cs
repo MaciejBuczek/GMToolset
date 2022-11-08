@@ -1,6 +1,6 @@
 ﻿using GMToolset.Data;
-using GMToolset.Data.Repositories;
 using GMToolset.Data.Repositories.Interfaces;
+using GMToolset.Data.Repositories.Warhammer4.Character;
 using GMToolset.Services.Interfaces;
 using GMToolset.Services.Models.Warhammer4.Character;
 using GMToolset.Services.Services;

@@ -19,6 +19,8 @@ namespace GMToolset.Data
 
         public DbSet<Skill> Skills { get; set; }
 
+        public DbSet<CharacterSkills> CharacterSkills { get; set; }
+
         public DbSet<Translation> Translations { get; set; }
     }
 }
