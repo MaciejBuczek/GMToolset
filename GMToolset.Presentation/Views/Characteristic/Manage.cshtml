@@ -1,0 +1,46 @@
+﻿@using GMToolset.Presentation.ViewModels.Warhammer4.CRUD
+@model GMToolset.Presentation.ViewModels.Warhammer4.CharacteristicManageVM
+@{
+    var counter = 1;
+    var dupa = new TranslationCRUD();
+}
+
+<table class="table table-bordered">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">No.</th>
+                <th scope="col">Name Pl</th>
+                <th scope="col">Name Eng</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <form asp-controller="Characteristic" asp-action="Add" method="post">
+                <tr>
+                    <td></td>
+                    <td>
+                        <input class="form-control" asp-for="TranslationCRUD.ContentPl" />
+                    </td>
+                    <td>
+                        <input class="form-control" asp-for="TranslationCRUD.ContentEng" />
+                    </td>
+                    <td>
+                        <input type="submit" class="btn btn-success" value="Add"/>
+                    </td>
+                </tr>
+            </form>
+        @if(Model.Characteristics != null && Model.Characteristics.Any())
+        {
+            foreach(var characteristic in Model.Characteristics)
+            {
+                <tr>
+                    <td>@counter</td>
+                    <td>@characteristic.Name.ContentPl</td>
+                    <td>@characteristic.Name.ContentEng</td>
+                    <td></td>
+                </tr>
+                @(counter++)
+            }
+        }
+    </tbody>
+</table>
