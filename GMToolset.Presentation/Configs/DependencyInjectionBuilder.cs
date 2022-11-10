@@ -2,16 +2,15 @@
 using GMToolset.Data.Repositories.Interfaces;
 using GMToolset.Data.Repositories.Warhammer4.Character;
 using GMToolset.Services.Interfaces;
-using GMToolset.Services.Models.Warhammer4.Character;
 using GMToolset.Services.Services;
-using GMToolset.Services.Services.Model_Services;
 using GMToolset.Services.Services.Model_Services.Warhammer4;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using GMTEntities = GMToolset.Data.Entities.Warhammer4;
-using GMTModels = GMToolset.Services.Models.Warhammer4;
+
+using _Entities = GMToolset.Data.Entities.Warhammer4.Character;
+using _Models = GMToolset.Services.Models.Warhammer4.Character;
 
 namespace GMToolset.Presentation.Configs
 {
@@ -40,10 +39,15 @@ namespace GMToolset.Presentation.Configs
             builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(Services.Data.Constants)));
 
             //Services
-            builder.Services.AddTransient<IModelService<CharacterSheet>, CharacterSheetService>();
+            builder.Services.AddTransient<IModelService<_Models.CharacterSheet>, CharacterSheetService>();
+            builder.Services.AddTransient<IModelService<_Models.Characteristic>, CharacteristicService>();
+            builder.Services.AddTransient<IModelService<_Models.Skill>, SkillService>();
 
             //Data
-            builder.Services.AddTransient<IRepository<GMTEntities.Character.CharacterSheet>, CharacterSheetRepository>();
+            builder.Services.AddTransient<IRepository<_Entities.CharacterSheet>, CharacterSheetRepository>();
+            builder.Services.AddTransient<IRepository<_Entities.Characteristic>, CharacteristicRepository>();
+            builder.Services.AddTransient<IRepository<_Entities.Skill>, SkillRepository>();
+
         }
     }
 }
