@@ -14,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Identity setup
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
 
 //Dependency Injection setup
