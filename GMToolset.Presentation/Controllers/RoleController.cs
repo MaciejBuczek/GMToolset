@@ -47,7 +47,7 @@ namespace GMToolset.Presentation.Controllers
 
             };
 
-            foreach (var user in _userManager.Users)
+            foreach (var user in _userManager.Users.ToList())
             {
                 if (await _userManager.IsInRoleAsync(user, role.Name))
                 {
@@ -100,7 +100,7 @@ namespace GMToolset.Presentation.Controllers
 
             var model = new List<UserRoleViewModel>();
 
-            foreach (var user in _userManager.Users)
+            foreach (var user in _userManager.Users.ToList())
             {
                 UserRoleViewModel userRoleVM = new()
                 {
