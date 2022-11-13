@@ -16,19 +16,27 @@ namespace GMToolset.Presentation.Controllers
             _characteristicService = characteristicService;
         }
 
-        public IActionResult Manage(TranslationCRUD translationCRUD)
+        [HttpGet]
+        public IActionResult Manage()
         {
-            var a = ModelState.ErrorCount;
             var vm = new CharacteristicManageVM
             {
-                Characteristics = _characteristicService.GetAll(),
-                TranslationCRUD =  translationCRUD ?? new TranslationCRUD()
+                ContentEng = String.Empty,
+                ContentPl = String.Empty,
+                Characteristics = _characteristicService.GetAll()
             };
+            ModelState.Clear();
             return View(vm);
         }
 
+        [HttpGet]
+        public IActionResult ManageResult(CharacteristicManageVM vm)
+        {
+            return View(nameof(Manage), vm);
+        }
+
         [HttpPost]
-        public IActionResult Add(TranslationCRUD translationCRUD)        
+        public IActionResult Add(CharacteristicManageVM vm)        
         {
             if (ModelState.IsValid)
             {
@@ -36,13 +44,15 @@ namespace GMToolset.Presentation.Controllers
                 {
                     Name = new Translation
                     {
-                        ContentPl = translationCRUD.ContentPl,
-                        ContentEng = translationCRUD.ContentEng
+                        ContentPl = vm.ContentPl,
+                        ContentEng = vm.ContentEng
                     }
                 };
                 _characteristicService.Add(characteristic);
+                return RedirectToAction(nameof(Manage));
+
             }
-            return RedirectToAction(nameof(Manage), translationCRUD);
+            return RedirectToAction(nameof(ManageResult), vm);
         }
     }
 }

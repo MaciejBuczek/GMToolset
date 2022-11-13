@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using GMToolset.Services.Models.Warhammer4.Character;
+using System.ComponentModel.DataAnnotations;
 
 namespace GMToolset.Presentation.ViewModels.Warhammer4.CRUD
 {
-    public class TranslationCRUD
+    public class CharacteristicManageVM
     {
         [Required]
         [MaxLength(255)]
@@ -11,5 +12,7 @@ namespace GMToolset.Presentation.ViewModels.Warhammer4.CRUD
         [Required]
         [MaxLength(255)]
         public string ContentEng { get; set; } = string.Empty;
+
+        public IEnumerable<Characteristic>? Characteristics { get; set; }
     }
 }

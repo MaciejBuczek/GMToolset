@@ -1,17 +1,16 @@
 ﻿@using GMToolset.Presentation.ViewModels.Warhammer4.CRUD
-@model GMToolset.Presentation.ViewModels.Warhammer4.CharacteristicManageVM
+@model GMToolset.Presentation.ViewModels.Warhammer4.CRUD.CharacteristicManageVM
 @{
     var counter = 1;
-    var dupa = new TranslationCRUD();
 }
 
-<table class="table table-bordered">
+<table class="table table-bordered align-middle">
         <thead>
             <tr class="text-center">
                 <th scope="col">No.</th>
                 <th scope="col">Name Pl</th>
                 <th scope="col">Name Eng</th>
-                <th scope="col">Action</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -19,27 +18,30 @@
                 <tr>
                     <td></td>
                     <td>
-                        <input class="form-control" asp-for="TranslationCRUD.ContentPl" />
+                        <input class="form-control" asp-for="ContentPl" />
+                        <span asp-validation-for="ContentPl" class="text-danger"></span>
                     </td>
                     <td>
-                        <input class="form-control" asp-for="TranslationCRUD.ContentEng" />
+                        <input class="form-control" asp-for="ContentEng" />
+                        <span asp-validation-for="ContentEng" class="text-danger"></span>
                     </td>
-                    <td>
-                        <input type="submit" class="btn btn-success" value="Add"/>
+                    <td class="text-center d-grid">
+                        <input type="submit" class="btn btn-success btn-block" value="Add"/>
                     </td>
                 </tr>
             </form>
-        @if(Model.Characteristics != null && Model.Characteristics.Any())
+        @if(Model.Characteristics != null)
         {
             foreach(var characteristic in Model.Characteristics)
             {
-                <tr>
-                    <td>@counter</td>
-                    <td>@characteristic.Name.ContentPl</td>
-                    <td>@characteristic.Name.ContentEng</td>
-                    <td></td>
+                <tr class="manage-click data-row simple-hover" data-id="@characteristic.Id" data-object-name="Name" style="cursor:pointer">
+                    <td class="text-center">@(counter++)</td>
+                    <td class="manage-field" data-field-name="ContentPl">@characteristic.Name.ContentPl</td>
+                    <td class="manage-field" data-field-name="ContentEng">@characteristic.Name.ContentEng</td>
+                    <td width="15%">
+                        <div class="manage-action-box d-flex flex-row justify-content-center align-items-center gap-2"></div>
+                    </td>
                 </tr>
-                @(counter++)
             }
         }
     </tbody>
