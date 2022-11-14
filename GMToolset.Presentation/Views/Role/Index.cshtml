@@ -8,6 +8,9 @@
     <div class="row">
         <div class="col">
             <div class="fancy-border">
+
+                @*! - Create new role - !*@
+
                 <h1 class="text-center">Create new role</h1>
                 <form asp-action="Create" method="post">
                     <div class="form-group">
@@ -29,6 +32,7 @@
                 </div>
                 </form>
 
+                @*! - Users list - !*@
 
                 <form asp-controller="Role" asp-action="UpdateUsersRoles" method="post">
                         <table class="table table-striped col-8">
@@ -88,6 +92,9 @@
 
         <div class="col">
             <div class="fancy-border">
+
+            @*! - Roles list and edit/delete - !*@
+
             <table class="table col-3">
                 <thead>
                     <tr>
@@ -95,7 +102,6 @@
                         <td></td>
                     </tr>
                 </thead>
-
                 <tbody>
                 @foreach (var role in Model.Roles)
                 {
@@ -119,7 +125,7 @@
                                                 <p>@role.RoleName</p>
                                       </div>
                                       <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="float: left">Close</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         <a asp-action="DeleteRole" asp-route-id="@role.Id" class="btn btn-danger">Delete</a>
                                       </div>
                                     </div>

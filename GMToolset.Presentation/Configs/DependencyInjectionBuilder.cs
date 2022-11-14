@@ -1,6 +1,8 @@
 ﻿using GMToolset.Data;
 using GMToolset.Data.Repositories;
 using GMToolset.Data.Repositories.Interfaces;
+using GMToolset.Presentation.Helpers.Intefaces;
+using GMToolset.Presentation.Helpers.Managers;
 using GMToolset.Services.Interfaces;
 using GMToolset.Services.Services;
 using GMToolset.Services.Services.Model_Services.QuickBattleManager;
@@ -37,6 +39,9 @@ namespace GMToolset.Presentation.Configs
             //Automapper setup
             var assembly = Assembly.GetAssembly(GetType());
             builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(Services.Data.Constants)));
+
+            //Managers
+            builder.Services.AddTransient<IRoleManager, RoleManager>();
 
             //Services
             builder.Services.AddTransient<IModelService<GMTModels.Warhammer4.CharacterSheet>, CharacterSheetService>();

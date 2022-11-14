@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace GMToolset.Presentation.ViewModels
+namespace GMToolset.Presentation.ViewModels.Role
 {
     public class EditRoleViewModel
     {
