@@ -1,7 +1,8 @@
-﻿using GMToolset.Data.Entities.Warhammer4;
+﻿using GMToolset.Data.Entities.Warhammer4.Character;
 using GMToolset.Data.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
-namespace GMToolset.Data.Repositories
+namespace GMToolset.Data.Repositories.Warhammer4.Character
 {
     public class CharacterSheetRepository : RepositoryBase, IRepository<CharacterSheet>
     {
@@ -12,12 +13,13 @@ namespace GMToolset.Data.Repositories
         public void Add(CharacterSheet entity)
         {
             _appDbContext.Add(entity);
+            _appDbContext.SaveChanges();
         }
 
         public void Delete(Guid id)
         {
             var entity = _appDbContext.CharacterSheets.Find(id);
-            if(entity != null)
+            if (entity != null)
             {
                 _appDbContext.Remove(entity);
                 _appDbContext.SaveChanges();
@@ -26,17 +28,17 @@ namespace GMToolset.Data.Repositories
 
         public IEnumerable<CharacterSheet> GetAll()
         {
-            return _appDbContext.CharacterSheets.AsEnumerable();
+            return _appDbContext.CharacterSheets.Include(x => x.Characteristics).AsEnumerable();
         }
 
         public CharacterSheet GetById(Guid id)
         {
-            return _appDbContext.CharacterSheets.Find(id);
+            return _appDbContext.CharacterSheets.Where(x => x.Id == id).Include(x => x.Characteristics).FirstOrDefault();
         }
 
         public void Update(CharacterSheet entity)
         {
-            if(_appDbContext.CharacterSheets.Find(entity.Id) != null)
+            if (_appDbContext.CharacterSheets.Find(entity.Id) != null)
             {
                 _appDbContext.Update(entity);
                 _appDbContext.SaveChanges();

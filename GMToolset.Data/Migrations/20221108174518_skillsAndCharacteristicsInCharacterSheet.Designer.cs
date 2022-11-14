@@ -3,6 +3,7 @@ using System;
 using GMToolset.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GMToolset.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221108174518_skillsAndCharacteristicsInCharacterSheet")]
+    partial class skillsAndCharacteristicsInCharacterSheet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,82 +25,6 @@ namespace GMToolset.Data.Migrations
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.CharacterCharacteristics", b =>
-            modelBuilder.Entity("GMToolset.Data.Entities.BattleManager.Participant", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("CurrentHp")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("CurrentMp")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("CurrentSt")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("DamagePerRound")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("ExtraInfo")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Initiative")
-                        .HasColumnType("integer");
-
-                    b.Property<bool>("IsMpApplicable")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsStApplicable")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("MaxHp")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("MaxMp")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("MaxSt")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<Guid?>("QuickSessionId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("QuickSessionId");
-
-                    b.ToTable("Participant");
-                }));
-
-            modelBuilder.Entity("GMToolset.Data.Entities.BattleManager.QuickSession", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<TimeSpan>("LastUpdate")
-                        .HasColumnType("interval");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("QuickSessions");
-                });
-
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.CharacterSheet", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -106,9 +32,6 @@ namespace GMToolset.Data.Migrations
 
                     b.Property<int>("Advancement")
                         .HasColumnType("integer");
-                    b.Property<string>("Age")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
 
                     b.Property<int>("BaseValue")
                         .HasColumnType("integer");
@@ -198,6 +121,7 @@ namespace GMToolset.Data.Migrations
                         .HasColumnType("character varying(100)");
 
                     b.Property<string>("Motivation")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("Movement")
@@ -497,15 +421,6 @@ namespace GMToolset.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("GMToolset.Data.Entities.BattleManager.Participant", b =>
-                {
-                    b.HasOne("GMToolset.Data.Entities.BattleManager.QuickSession", "QuickSession")
-                        .WithMany()
-                        .HasForeignKey("QuickSessionId");
-
-                    b.Navigation("QuickSession");
                 });
 
             modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.CharacterCharacteristics", b =>
