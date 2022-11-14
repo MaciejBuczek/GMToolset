@@ -1,17 +1,21 @@
 ﻿using GMToolset.Data;
+using GMToolset.Data.Repositories;
 using GMToolset.Data.Repositories.Interfaces;
 using GMToolset.Data.Repositories.Warhammer4;
 using GMToolset.Data.Repositories.Warhammer4.Character;
 using GMToolset.Services.Interfaces;
 using GMToolset.Services.Services;
+using GMToolset.Services.Services.Model_Services.QuickBattleManager;
 using GMToolset.Services.Services.Model_Services.Warhammer4;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-using _Entities = GMToolset.Data.Entities.Warhammer4;
-using _Models = GMToolset.Services.Models.Warhammer4;
+using _Entities = GMToolset.Data.Entities;
+using _EntitiesWh4 = GMToolset.Data.Entities.Warhammer4;
+using _Models = GMToolset.Services.Models;
+using _ModelsWh4 = GMToolset.Services.Models.Warhammer4;
 
 namespace GMToolset.Presentation.Configs
 {
@@ -40,17 +44,26 @@ namespace GMToolset.Presentation.Configs
             builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(Services.Data.Constants)));
 
             //Services
-            builder.Services.AddTransient<IModelService<_Models.Translation>, TranslationService>();
-            builder.Services.AddTransient<IModelService<_Models.Character.CharacterSheet>, CharacterSheetService>();
-            builder.Services.AddTransient<IModelService<_Models.Character.Characteristic>, CharacteristicService>();
-            builder.Services.AddTransient<IModelService<_Models.Character.Skill>, SkillService>();
+            //Wh4
+            builder.Services.AddTransient<IModelService<_ModelsWh4.Translation>, TranslationService>();
+            builder.Services.AddTransient<IModelService<_ModelsWh4.Character.CharacterSheet>, CharacterSheetService>();
+            builder.Services.AddTransient<IModelService<_ModelsWh4.Character.Characteristic>, CharacteristicService>();
+            builder.Services.AddTransient<IModelService<_ModelsWh4.Character.Skill>, SkillService>();
+
+            //Sessions
+            builder.Services.AddTransient<IModelService<_Models.QuickBattleManager.Participant>, ParticipantService>();
+            builder.Services.AddTransient<IModelService<_Models.QuickBattleManager.QuickSession>, QuickSessionService>();
 
             //Data
-            builder.Services.AddTransient<IRepository<_Entities.Translation>, TranslationRepository>();
-            builder.Services.AddTransient<IRepository<_Entities.Character.CharacterSheet>, CharacterSheetRepository>();
-            builder.Services.AddTransient<IRepository<_Entities.Character.Characteristic>, CharacteristicRepository>();
-            builder.Services.AddTransient<IRepository<_Entities.Character.Skill>, SkillRepository>();
+            //Wh4
+            builder.Services.AddTransient<IRepository<_EntitiesWh4.Translation>, TranslationRepository>();
+            builder.Services.AddTransient<IRepository<_EntitiesWh4.Character.CharacterSheet>, CharacterSheetRepository>();
+            builder.Services.AddTransient<IRepository<_EntitiesWh4.Character.Characteristic>, CharacteristicRepository>();
+            builder.Services.AddTransient<IRepository<_EntitiesWh4.Character.Skill>, SkillRepository>();
 
+            //Sessions
+            builder.Services.AddTransient<IRepository<_Entities.QuickBattleManager.Participant>, ParticipantRepository>();
+            builder.Services.AddTransient<IRepository<_Entities.QuickBattleManager.QuickSession>, QuickSessionRepository>();
         }
     }
 }
