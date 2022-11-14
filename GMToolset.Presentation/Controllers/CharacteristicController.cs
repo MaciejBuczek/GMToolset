@@ -54,5 +54,20 @@ namespace GMToolset.Presentation.Controllers
             }
             return RedirectToAction(nameof(ManageResult), vm);
         }
+
+        [HttpDelete]
+        public IActionResult Remove([FromBody]string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return BadRequest();
+
+            if (_characteristicService.GetById(Guid.Parse(id)) != null)
+            {
+                _characteristicService.Delete(Guid.Parse(id));
+                return Ok();
+            }
+
+            return NotFound();
+        }
     }
 }

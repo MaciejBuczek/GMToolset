@@ -32,7 +32,8 @@ function enableEdit(obj) {
     clearButton.addEventListener('click', selectTag);
     clearButton.setAttribute('data-id', currentObject.dataset.id);
 
-    actionBox.appendChild(DOMGenerator.Button(['btn-danger'], '<i class="fa-solid fa-trash-can"></i>'));
+    let removeButton = actionBox.appendChild(DOMGenerator.Button(['btn-danger'], '<i class="fa-solid fa-trash-can"></i>'));
+    removeButton.addEventListener('click', removeEntry);
 
     let fields = Array.from(currentObject.getElementsByClassName('manage-field'));
     fieldsCopy = [];
@@ -59,4 +60,22 @@ function disbleEdit(evt) {
     currentObject.addEventListener('click', selectTag);
     currentObject = null;
     fields = null;
+}
+
+function removeEntry() {
+    let deleteActionName = document.getElementById('manage-delete').value;
+    fetch(url = `${deleteActionName}`, {
+        method: 'delete',
+        headers: {
+            'content-type': 'application/json',
+            'accept': 'application/json'
+        },
+        body: JSON.stringify(currentObject.dataset.id)
+    }).then((response) => {
+        if (response.ok) {
+            window.location.reload();
+        } else {
+            console.error(response.status);
+        }
+    });
 }
