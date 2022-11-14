@@ -78,7 +78,7 @@ namespace GMToolset.Data.Migrations
                     b.HasIndex("QuickSessionId");
 
                     b.ToTable("Participant");
-                });
+                }));
 
             modelBuilder.Entity("GMToolset.Data.Entities.BattleManager.QuickSession", b =>
                 {
