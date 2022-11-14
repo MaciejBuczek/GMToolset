@@ -4,7 +4,7 @@ html {
 
 @media (min-width: 768px) {
   html {
-    font-size: 16px;
+    font-size: 20px;
   }
 }
 
@@ -32,4 +32,32 @@ body {
 
 .romantik{
     font-family : romantik;
+}
+
+h1 {
+    font-family: romantik;
+}
+
+p {
+    font-family: living-stone;
+}
+
+button {
+    font-family: living-stone;
+}
+
+a {
+    font-family: living-stone;
+}
+
+label {
+    font-family: living-stone;
+}
+
+th {
+    font-family: living-stone;
+}
+
+td {
+    font-family: living-stone;
 }

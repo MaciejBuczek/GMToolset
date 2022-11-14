@@ -7,7 +7,6 @@
 
 /* Style the dropdown button to fit inside the topnav */
 .dropdown-triangle .dropbtn {
-    font-size: 13px;
     color:rgba(255,255,255,.55);
     text-transform:uppercase;
     font-weight:500;
@@ -15,7 +14,6 @@
     outline: none;
     padding: 1em;
     background-color: inherit;
-    font-family: inherit;
     margin: 0;
 }
 

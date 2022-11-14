@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace GMToolset.Presentation.ViewModels
 {
@@ -8,6 +9,6 @@ namespace GMToolset.Presentation.ViewModels
         [Display(Name = "Role")]
         [Required(ErrorMessage = "Role name is required.")]
         public string RoleName { get; set; }
-        public List<string> Users { get; set; } = new();
+        public List<IdentityUser> Users { get; set; } = new();
     }
 }

@@ -1,6 +1,7 @@
 ﻿@model GMToolset.Presentation.ViewModels.EditRoleViewModel
 @{
     ViewData["Title"] = "EDIT ROLE";
+    var counter = 1;
 }
 
 <form method="post" class="row">
@@ -27,22 +28,25 @@
         <h3>Users with @Model.RoleName role</h3>
 
         <table class="table table-striped col-8">
-            <tr></tr>
-            @if (Model.Users.Any())
-            {
-                foreach (var user in Model.Users)
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Roles</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.Users)
                 {
                     <tr>
-                        <td class="form-label">@user</td>
+                        <td class="form-label">@counter</td>
+                        <td class="form-label">@user.UserName</td>
+                        <td class="form-label">@user.Email</td>
                     </tr>
+                    counter++;
                 }
-            }
-            else
-            {
-                <tr>
-                    <td class="form-label">No users with @Model.RoleName role</td>
-                </tr>
-            }
+            </tbody>
         </table>
         <div>
             <a asp-action="EditUsersInRole" asp-route-id="@Model.Id" class="btn btn-primary">Add/Remove users in role</a>

@@ -1,6 +1,10 @@
-﻿using GMToolset.Presentation.ViewModels;
+﻿using GMToolset.Presentation.Helpers;
+using GMToolset.Presentation.ViewModels;
+using GMToolset.Presentation.ViewModels.Role;
+using GMToolset.Presentation.ViewModels.Role.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.ComponentModel.DataAnnotations;
 
 namespace GMToolset.Presentation.Controllers
@@ -16,8 +20,96 @@ namespace GMToolset.Presentation.Controllers
             _userManager = userManager;
         }
 
-        public ViewResult Index() => View(_roleManager.Roles);
-        public IActionResult Create() => View();
+        #region conts
+        const string roleAdmin = "Admin";
+        #endregion
+
+        public async Task<IActionResult> Index(
+            string sortOrder,
+            string currentFilter,
+            string searchString,
+            int? pageNumber)
+        {
+            var vm = new UserRoleViewModel();
+            var counter = 1;
+
+            foreach (var role in _roleManager.Roles)
+            {
+                vm.Roles.Add(new SimpleRole()
+                {
+                    Id = role.Id,
+                    RoleName = role.Name
+                });
+            }
+
+            ViewData["UsernameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "username_desc" : "";
+            ViewData["EmailSortParm"] = sortOrder == "email" ? "email_desc" : "email";
+            ViewData["AdminSortParm"] = sortOrder == "admin" ? "admin_desc" : "admin";
+            ViewData["CurrentSort"] = sortOrder;
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
+            var users = new List<SimpleUser>();
+
+            foreach (var user in _userManager.Users.ToList())
+            {
+                users.Add(new SimpleUser()
+                {
+                    No = counter,
+                    Id = user.Id,
+                    Username = user.UserName,
+                    Email = user.Email,
+                    IsAdmin = await _userManager.IsInRoleAsync(user, roleAdmin)
+                });
+                counter++;
+            }
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(u => u.Username.Contains(searchString)
+                                       || u.Email.Contains(searchString)).ToList();
+            }
+            switch (sortOrder)
+            {
+                case "username_desc":
+                    users = users.OrderByDescending(u => u.Username).ToList();
+                    break;
+                case "email":
+                    users = users.OrderBy(u => u.Email).ToList();
+                    break;
+                case "email_desc":
+                    users = users.OrderByDescending(u => u.Email).ToList();
+                    break;
+                case "admin":
+                    users = users.OrderBy(u => u.IsAdmin).ToList();
+                    break;
+                case "admin_desc":
+                    users = users.OrderByDescending(u => u.IsAdmin).ToList();
+                    break;
+                default:
+                    users = users.OrderBy(u => u.Username).ToList();
+                    break;
+            }
+
+            int pageSize = 10;
+
+            vm.Users = await PaginatedList<SimpleUser>.CreateAsync(users, pageNumber ?? 1, pageSize);
+            return View(vm);
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create([Required] string name)
@@ -35,11 +127,6 @@ namespace GMToolset.Presentation.Controllers
         {
             var role = await _roleManager.FindByIdAsync(id);
 
-            if (role == null)
-            {
-                ViewData["ErrorMessage"] = $"No role with Id: {id} was found.";
-                return View("Error");
-            }
             EditRoleViewModel model = new()
             {
                 Id = role.Id,
@@ -51,7 +138,7 @@ namespace GMToolset.Presentation.Controllers
             {
                 if (await _userManager.IsInRoleAsync(user, role.Name))
                 {
-                    model.Users.Add(user.UserName);
+                    model.Users.Add(user);
                 }
             }
 
@@ -63,96 +150,18 @@ namespace GMToolset.Presentation.Controllers
         {
             var role = await _roleManager.FindByIdAsync(model.Id);
 
-            if (role == null)
+            role.Name = model.RoleName;
+
+            var result = await _roleManager.UpdateAsync(role);
+
+            if (result.Succeeded) { return RedirectToAction("Index"); }
+
+            foreach (var error in result.Errors)
             {
-                ViewData["ErrorMessage"] = $"No role with Id: {model.Id} was found.";
-                return View("Error");
-            }
-            else
-            {
-                role.Name = model.RoleName;
-
-                var result = await _roleManager.UpdateAsync(role);
-
-                if (result.Succeeded) { return RedirectToAction("Index"); }
-
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
-
-                return View(model);
-            }
-        }
-        [HttpGet]
-        public async Task<IActionResult> EditUsersInRole(string id)
-        {
-            var role = await _roleManager.FindByIdAsync(id);
-
-            ViewData["roleId"] = id;
-            ViewData["roleName"] = role.Name;
-
-            if (role == null)
-            {
-                ViewData["ErrorMessage"] = $"No role with Id '{id}' was found";
-                return View("Error");
-            }
-
-            var model = new List<UserRoleViewModel>();
-
-            foreach (var user in _userManager.Users.ToList())
-            {
-                UserRoleViewModel userRoleVM = new()
-                {
-                    Id = user.Id,
-                    Name = user.UserName
-                };
-
-                if (await _userManager.IsInRoleAsync(user, role.Name))
-                {
-                    userRoleVM.IsSelected = true;
-                }
-                else
-                {
-                    userRoleVM.IsSelected = false;
-                }
-
-                model.Add(userRoleVM);
+                ModelState.AddModelError(string.Empty, error.Description);
             }
 
             return View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> EditUsersInRole(List<UserRoleViewModel> model, string id)
-        {
-            var role = await _roleManager.FindByIdAsync(id);
-
-            if (role == null)
-            {
-                ViewData["ErrorMessage"] = $"No role with Id '{id}' was found";
-                return View("Error");
-            }
-
-            for (int i = 0; i < model.Count; i++)
-            {
-                var user = await _userManager.FindByIdAsync(model[i].Id);
-
-                if (model[i].IsSelected && !(await _userManager.IsInRoleAsync(user, role.Name)))
-                {
-                    await _userManager.AddToRoleAsync(user, role.Name);
-                }
-                else if (!model[i].IsSelected && await _userManager.IsInRoleAsync(user, role.Name))
-                {
-                    await _userManager.RemoveFromRoleAsync(user, role.Name);
-                }
-                else
-                {
-                    continue;
-                }
-            }
-
-            return RedirectToAction("EditRole", new { Id = id });
         }
 
         [HttpGet]
@@ -160,36 +169,43 @@ namespace GMToolset.Presentation.Controllers
         {
             var role = await _roleManager.FindByIdAsync(id);
 
-            return View(role);
-        }
+            var result = await _roleManager.DeleteAsync(role);
 
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return RedirectToAction("Index");
+        }
         [HttpPost]
-        public async Task<IActionResult> ConfirmDelete(string id)
+        public async Task<IActionResult> UpdateUsersRoles(UserRoleViewModel model)
         {
-            var role = await _roleManager.FindByIdAsync(id);
-
-            if (role == null)
+            for (int i = 0; i < model.Users.Count; i++)
             {
-                ViewData["ErrorMessage"] = $"No role with Id '{id}' was found";
-                return View("Error");
-            }
-            else
-            {
-                var result = await _roleManager.DeleteAsync(role);
+                var user = await _userManager.FindByIdAsync(model.Users[i].Id);
 
-                if (result.Succeeded)
+                if (model.Users[i].IsAdmin && !(await _userManager.IsInRoleAsync(user, roleAdmin)))
                 {
-                    return RedirectToAction("ListAllRoles");
+                    await _userManager.AddToRoleAsync(user, roleAdmin);
                 }
-
-                foreach (var error in result.Errors)
+                else if (!model.Users[i].IsAdmin && await _userManager.IsInRoleAsync(user, roleAdmin))
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    await _userManager.RemoveFromRoleAsync(user, roleAdmin);
                 }
-
-                return View(role);
+                else
+                {
+                    continue;
+                }
             }
+
+            return RedirectToAction("Index");
         }
-
     }
+
 }
