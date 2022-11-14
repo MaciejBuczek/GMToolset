@@ -20,7 +20,7 @@
 
         <div class="form-group">
             <a asp-action="Index" class="btn btn-warning">Back</a>
-            <button type="submit" class="btn btn-success">Update</button>
+            <button type="submit" class="btn btn-success" style="float: right">Update</button>
         </div>
     </div>
     <div class="col-1"></div>
@@ -30,10 +30,9 @@
         <table class="table table-striped col-8">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">No</th>
                     <th scope="col">Username</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Roles</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,8 +47,5 @@
                 }
             </tbody>
         </table>
-        <div>
-            <a asp-action="EditUsersInRole" asp-route-id="@Model.Id" class="btn btn-primary">Add/Remove users in role</a>
-        </div>
     </div>
 </form>
