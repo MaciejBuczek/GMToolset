@@ -25,6 +25,10 @@ body {
     font-family: 'romantik';
     src: url('../fonts/Romantik.ttf');
 }
+@font-face {
+    font-family: 'philosopher-regular';
+    src: url('../fonts/Philosopher-Regular.ttf');
+}
 
 .living-stone{
     font-family: living-stone;
@@ -34,30 +38,34 @@ body {
     font-family : romantik;
 }
 
+.philosopher-regular{
+    font-family : philosopher-regular;
+}
+
 h1 {
-    font-family: romantik;
+    font-family: living-stone;
 }
 
 p {
-    font-family: living-stone;
+    font-family: philosopher-regular;
 }
 
 button {
-    font-family: living-stone;
+    font-family: philosopher-regular;
 }
 
 a {
-    font-family: living-stone;
+    font-family: philosopher-regular;
 }
 
 label {
-    font-family: living-stone;
+    font-family: philosopher-regular;
 }
 
 th {
-    font-family: living-stone;
+    font-family: philosopher-regular;
 }
 
 td {
-    font-family: living-stone;
+    font-family: philosopher-regular;
 }
