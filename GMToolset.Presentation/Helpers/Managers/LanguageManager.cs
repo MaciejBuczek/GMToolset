@@ -1,4 +1,4 @@
-﻿namespace GMToolset.Presentation.Helpers
+﻿namespace GMToolset.Presentation.Helpers.Managers
 {
     public static class LanguageManager
     {
@@ -14,7 +14,7 @@
 
             if (string.IsNullOrEmpty(language))
                 return Language.unknown;
-            
+
             switch (language)
             {
                 case "pl":
