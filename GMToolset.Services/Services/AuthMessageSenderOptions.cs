@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GMToolset.Services.Services
+﻿namespace GMToolset.Services.Services
 {
     public class AuthMessageSenderOptions
     {
-        public string? SendGridKey { get; set; }
+        public string SendGridKey { get; set; }
     }
 }

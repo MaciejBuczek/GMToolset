@@ -3,6 +3,7 @@ using System;
 using GMToolset.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GMToolset.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221105111816_ParticipantAndQuickSession")]
+    partial class ParticipantAndQuickSession
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,6 @@ namespace GMToolset.Data.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.CharacterCharacteristics", b =>
             modelBuilder.Entity("GMToolset.Data.Entities.BattleManager.Participant", b =>
                 {
                     b.Property<Guid>("Id")
@@ -104,55 +105,21 @@ namespace GMToolset.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<int>("Advancement")
-                        .HasColumnType("integer");
                     b.Property<string>("Age")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<int>("BaseValue")
+                    b.Property<int>("Agility")
                         .HasColumnType("integer");
 
-                    b.Property<Guid?>("CharacterSheetId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("AgilityAdv")
+                        .HasColumnType("integer");
 
-                    b.Property<Guid>("CharacteristicsId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("BallisticSkill")
+                        .HasColumnType("integer");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("CharacterSheetId");
-
-                    b.HasIndex("CharacteristicsId");
-
-                    b.ToTable("CharacterCharacteristics");
-                });
-
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.Characteristic", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("NameId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NameId");
-
-                    b.ToTable("Characteristics");
-                });
-
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.CharacterSheet", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Age")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                    b.Property<int>("BallisticSkillAdv")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Career")
                         .IsRequired()
@@ -173,6 +140,12 @@ namespace GMToolset.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
+                    b.Property<int>("Dexterity")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("DexterityAdv")
+                        .HasColumnType("integer");
+
                     b.Property<int>("ExpCurrent")
                         .HasColumnType("integer");
 
@@ -186,6 +159,12 @@ namespace GMToolset.Data.Migrations
                     b.Property<int>("Fate")
                         .HasColumnType("integer");
 
+                    b.Property<int>("Fellowship")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("FellowshipAdv")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Fortune")
                         .HasColumnType("integer");
 
@@ -196,6 +175,18 @@ namespace GMToolset.Data.Migrations
                     b.Property<string>("Height")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
+
+                    b.Property<int>("Initiattive")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("InitiattiveAdv")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Intelligence")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IntelligenceAdv")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Motivation")
                         .HasColumnType("text");
@@ -224,79 +215,36 @@ namespace GMToolset.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
+                    b.Property<int>("Strength")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("StrengthAdv")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Toughness")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ToughnessAdv")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("WeaponSkill")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("WeaponSkillAdv")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Willpower")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("WillpowerAdv")
+                        .HasColumnType("integer");
+
                     b.Property<int>("Wounds")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.ToTable("CharacterSheets");
-                });
-
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.CharacterSkills", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Advancement")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("BaseValue")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid?>("CharacterSheetId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("SkillId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CharacterSheetId");
-
-                    b.HasIndex("SkillId");
-
-                    b.ToTable("CharacterSkills");
-                });
-
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.Skill", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("NameId")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NameId");
-
-                    b.ToTable("Skills");
-                });
-
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Translation", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("ContentEng")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<string>("ContentPl")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Translations");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -508,58 +456,6 @@ namespace GMToolset.Data.Migrations
                     b.Navigation("QuickSession");
                 });
 
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.CharacterCharacteristics", b =>
-                {
-                    b.HasOne("GMToolset.Data.Entities.Warhammer4.Character.CharacterSheet", null)
-                        .WithMany("Characteristics")
-                        .HasForeignKey("CharacterSheetId");
-
-                    b.HasOne("GMToolset.Data.Entities.Warhammer4.Character.Characteristic", "Characteristics")
-                        .WithMany()
-                        .HasForeignKey("CharacteristicsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Characteristics");
-                });
-
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.Characteristic", b =>
-                {
-                    b.HasOne("GMToolset.Data.Entities.Warhammer4.Translation", "Name")
-                        .WithMany()
-                        .HasForeignKey("NameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Name");
-                });
-
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.CharacterSkills", b =>
-                {
-                    b.HasOne("GMToolset.Data.Entities.Warhammer4.Character.CharacterSheet", null)
-                        .WithMany("Skills")
-                        .HasForeignKey("CharacterSheetId");
-
-                    b.HasOne("GMToolset.Data.Entities.Warhammer4.Character.Skill", "Skill")
-                        .WithMany()
-                        .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Skill");
-                });
-
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.Skill", b =>
-                {
-                    b.HasOne("GMToolset.Data.Entities.Warhammer4.Translation", "Name")
-                        .WithMany()
-                        .HasForeignKey("NameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Name");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -609,13 +505,6 @@ namespace GMToolset.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.CharacterSheet", b =>
-                {
-                    b.Navigation("Characteristics");
-
-                    b.Navigation("Skills");
                 });
 #pragma warning restore 612, 618
         }
