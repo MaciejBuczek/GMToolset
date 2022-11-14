@@ -26,7 +26,8 @@ function enableEdit(obj) {
 
     let actionBox = currentObject.getElementsByClassName('manage-action-box')[0];
 
-    actionBox.appendChild(DOMGenerator.Button(['btn-success'], '<i class="fa-solid fa-check"></i>'));
+    let editButton = actionBox.appendChild(DOMGenerator.Button(['btn-success'], '<i class="fa-solid fa-check"></i>'));
+    editButton.addEventListener('click', editEntry);
 
     let clearButton = actionBox.appendChild(DOMGenerator.Button(['btn-warning'], '<i class="fa-solid fa-xmark"></i>'));
     clearButton.addEventListener('click', selectTag);
@@ -64,11 +65,13 @@ function disbleEdit(evt) {
 
 function removeEntry() {
     let deleteActionName = document.getElementById('manage-delete').value;
+
     fetch(url = `${deleteActionName}`, {
         method: 'delete',
         headers: {
             'content-type': 'application/json',
-            'accept': 'application/json'
+            'accept': 'application/json',
+            'RequestVerificationToken': document.getElementById('manage-token').getElementsByTagName('input')[0].value
         },
         body: JSON.stringify(currentObject.dataset.id)
     }).then((response) => {
@@ -76,6 +79,32 @@ function removeEntry() {
             window.location.reload();
         } else {
             console.error(response.status);
+        }
+    });
+}
+
+function editEntry() {
+    let patchtActionName = document.getElementById('manage-patch').value;
+    let fieldArray = Array.from(currentObject.getElementsByClassName('manage-field'));
+    let editObject = {};
+    fieldArray.forEach(field => {
+        editObject[field.dataset.fieldName] = field.getElementsByTagName('input')[0].value;
+    });
+    editObject['Id'] = currentObject.dataset.id;
+
+    fetch(url = `${patchtActionName}`, {
+        method: 'patch',
+        headers: {
+            'content-type': 'application/json',
+            'accept': 'application/json',
+            'RequestVerificationToken': document.getElementById('manage-token').getElementsByTagName('input')[0].value
+        },
+        body: JSON.stringify(editObject)
+    }).then((response) => {
+        if (response.ok) {
+            window.location.reload();
+        } else {
+            console.error(response.patch);
         }
     });
 }

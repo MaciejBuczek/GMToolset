@@ -3,9 +3,11 @@
 @{
     var counter = 1;
 }
-@Html.AntiForgeryToken()
+<div id="manage-token">
+    @Html.AntiForgeryToken()
+</div>
 <input id="manage-controller" type="hidden" value="characteristic" />
-<input id="manage-put" type="hidden" value="add" />
+<input id="manage-patch" type="hidden" value="edit" />
 <input id="manage-delete" type="hidden" value="remove" />
 
 <table class="table table-bordered align-middle">

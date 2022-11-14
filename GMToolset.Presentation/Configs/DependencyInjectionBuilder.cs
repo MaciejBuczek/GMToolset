@@ -1,5 +1,6 @@
 ﻿using GMToolset.Data;
 using GMToolset.Data.Repositories.Interfaces;
+using GMToolset.Data.Repositories.Warhammer4;
 using GMToolset.Data.Repositories.Warhammer4.Character;
 using GMToolset.Services.Interfaces;
 using GMToolset.Services.Services;
@@ -9,8 +10,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-using _Entities = GMToolset.Data.Entities.Warhammer4.Character;
-using _Models = GMToolset.Services.Models.Warhammer4.Character;
+using _Entities = GMToolset.Data.Entities.Warhammer4;
+using _Models = GMToolset.Services.Models.Warhammer4;
 
 namespace GMToolset.Presentation.Configs
 {
@@ -39,14 +40,16 @@ namespace GMToolset.Presentation.Configs
             builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(Services.Data.Constants)));
 
             //Services
-            builder.Services.AddTransient<IModelService<_Models.CharacterSheet>, CharacterSheetService>();
-            builder.Services.AddTransient<IModelService<_Models.Characteristic>, CharacteristicService>();
-            builder.Services.AddTransient<IModelService<_Models.Skill>, SkillService>();
+            builder.Services.AddTransient<IModelService<_Models.Translation>, TranslationService>();
+            builder.Services.AddTransient<IModelService<_Models.Character.CharacterSheet>, CharacterSheetService>();
+            builder.Services.AddTransient<IModelService<_Models.Character.Characteristic>, CharacteristicService>();
+            builder.Services.AddTransient<IModelService<_Models.Character.Skill>, SkillService>();
 
             //Data
-            builder.Services.AddTransient<IRepository<_Entities.CharacterSheet>, CharacterSheetRepository>();
-            builder.Services.AddTransient<IRepository<_Entities.Characteristic>, CharacteristicRepository>();
-            builder.Services.AddTransient<IRepository<_Entities.Skill>, SkillRepository>();
+            builder.Services.AddTransient<IRepository<_Entities.Translation>, TranslationRepository>();
+            builder.Services.AddTransient<IRepository<_Entities.Character.CharacterSheet>, CharacterSheetRepository>();
+            builder.Services.AddTransient<IRepository<_Entities.Character.Characteristic>, CharacteristicRepository>();
+            builder.Services.AddTransient<IRepository<_Entities.Character.Skill>, SkillRepository>();
 
         }
     }

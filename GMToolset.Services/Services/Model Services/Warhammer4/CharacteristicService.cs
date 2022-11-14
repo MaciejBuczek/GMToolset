@@ -1,12 +1,7 @@
 ﻿using AutoMapper;
 using GMToolset.Data.Repositories.Interfaces;
 using GMToolset.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using GMToolset.Services.Models.Warhammer4;
 using _Entities = GMToolset.Data.Entities.Warhammer4.Character;
 using _Models = GMToolset.Services.Models.Warhammer4.Character;
 
@@ -14,8 +9,11 @@ namespace GMToolset.Services.Services.Model_Services.Warhammer4
 {
     public class CharacteristicService : ModelServiceBase<_Entities.Characteristic>, IModelService<_Models.Characteristic>
     {
-        public CharacteristicService(IRepository<_Entities.Characteristic> repository, IMapper mapper) : base(repository, mapper)
+        private readonly IModelService<Translation> _translationService;
+
+        public CharacteristicService(IRepository<_Entities.Characteristic> repository, IMapper mapper, IModelService<Translation> translationService) : base(repository, mapper)
         {
+            _translationService = translationService;
         }
 
         public void Add(_Models.Characteristic entity)
@@ -40,7 +38,12 @@ namespace GMToolset.Services.Services.Model_Services.Warhammer4
 
         public void Update(_Models.Characteristic entity)
         {
-            _repository.Update(_mapper.Map<_Entities.Characteristic>(entity));
+            var characteristic = GetById(entity.Id);
+
+            characteristic.Name.ContentPl = entity.Name.ContentPl;
+            characteristic.Name.ContentEng = entity.Name.ContentEng;
+
+            _translationService.Update(characteristic.Name);
         }
     }
 }

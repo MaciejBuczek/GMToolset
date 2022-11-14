@@ -36,6 +36,7 @@ namespace GMToolset.Presentation.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Add(CharacteristicManageVM vm)        
         {
             if (ModelState.IsValid)
@@ -56,6 +57,7 @@ namespace GMToolset.Presentation.Controllers
         }
 
         [HttpDelete]
+        [ValidateAntiForgeryToken]
         public IActionResult Remove([FromBody]string id)
         {
             if (string.IsNullOrEmpty(id))
@@ -68,6 +70,27 @@ namespace GMToolset.Presentation.Controllers
             }
 
             return NotFound();
+        }
+
+        [HttpPatch]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit([FromBody] CharacteristicManageVM vm)
+        {
+            if(vm == null || vm.Id == Guid.Empty)
+                return BadRequest();
+
+            var characteristic = new Characteristic
+            {
+                Id = vm.Id,
+                Name = new Translation
+                {
+                    ContentPl = vm.ContentPl,
+                    ContentEng = vm.ContentEng
+                }
+            };
+            _characteristicService.Update(characteristic);
+
+            return Ok();
         }
     }
 }
