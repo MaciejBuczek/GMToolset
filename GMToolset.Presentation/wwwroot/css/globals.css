@@ -1,0 +1,7 @@
+﻿.hover-background {
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+.simple-hover:hover {
+    background-color: rgba(0, 0, 0, 0.075);
+}

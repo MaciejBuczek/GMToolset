@@ -1,0 +1,177 @@
+﻿@model GMToolset.Services.Models.Warhammer4.Character.CharacterSheet
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+
+<!-- Character Name --> 
+<div class="row">
+    <div class=" h1 text-center">@Model.Name</div>
+</div>
+
+<div class="row border-top pt-2">
+    <!-- Basic Info --> 
+    <div class="col-8">
+        <!-- Species and Class --> 
+        <div class="row">
+            <div class="col">
+                <p>
+                    <span class="fw-bold">Rasa:</span>
+                    <span class="ps-2">@Model.Species</span>
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    <span class="fw-bold">Klasa:</span>
+                    <span class="ps-2">@Model.Class</span>
+                </p>
+            </div>
+        </div>
+        <!-- Profession --> 
+        <div class="row">
+            <div class="col">
+                <p>
+                    <span class="fw-bold">Profesja:</span>
+                    <span class="ps-2">@Model.Career</span>
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    <span class="fw-bold">Poziom Profesji:</span>
+                    <span class="ps-2">@Model.CarrierTier</span>
+                </p>
+            </div>
+        </div>
+        <!-- Appearance --> 
+        <div class="row">
+            <div class="col">
+                <p>
+                    <span class="fw-bold">Wiek:</span>
+                    <span class="ps-2">71</span>
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    <span class="fw-bold">Wzrost:</span>
+                    <span class="ps-2">162 cm</span>
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    <span class="fw-bold">Włosy:</span>
+                    <span class="ps-2">Brak</span>
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    <span class="fw-bold">Oczy:</span>
+                    <span class="ps-2">Brązowe</span>
+                </p>
+            </div>
+        </div>
+        <div class="row border-top pt-2">
+            <!-- Characteristics --> 
+            <div class="col-8">
+                <p class="h4 fw-bold text-center">Cechy</p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col"></th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.WeaponSkill)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.BallisticSkill)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.Strength)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.Toughness)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.Agility)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.Initiattive)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.Dexterity)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.Intelligence)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.Willpower)]</th>
+                            <th scope="col">@localizer[Html.DisplayNameFor(x => x.Characteristics.Fellowship)]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-end">
+                            <th scope="row" class="text-center">Początkowa</th>
+                            <td>@Model.Characteristics.WeaponSkill</td>
+                            <td>@Model.Characteristics.BallisticSkill</td>
+                            <td>@Model.Characteristics.Strength</td>
+                            <td>@Model.Characteristics.Toughness</td>
+                            <td>@Model.Characteristics.Agility</td>
+                            <td>@Model.Characteristics.Initiattive</td>
+                            <td>@Model.Characteristics.Dexterity</td>
+                            <td>@Model.Characteristics.Intelligence</td>
+                            <td>@Model.Characteristics.Willpower</td>
+                            <td>@Model.Characteristics.Fellowship</td>
+                        </tr>
+                        <tr class="text-end">
+                            <th scope="row" class="text-center">Rozwinięcia</th>
+                            <td>@Model.Characteristics.WeaponSkillAdv</td>
+                            <td>@Model.Characteristics.BallisticSkillAdv</td>
+                            <td>@Model.Characteristics.StrengthAdv</td>
+                            <td>@Model.Characteristics.ToughnessAdv</td>
+                            <td>@Model.Characteristics.AgilityAdv</td>
+                            <td>@Model.Characteristics.InitiattiveAdv</td>
+                            <td>@Model.Characteristics.DexterityAdv</td>
+                            <td>@Model.Characteristics.IntelligenceAdv</td>
+                            <td>@Model.Characteristics.WillpowerAdv</td>
+                            <td>@Model.Characteristics.FellowshipAdv</td>
+                        </tr>
+                        <tr class="text-end">
+                            <th scope="row" class="text-center">Aktualna</th>
+                            <td>@(Model.Characteristics.WeaponSkill + Model.Characteristics.WeaponSkillAdv)</td>
+                            <td>@(Model.Characteristics.BallisticSkill + Model.Characteristics.BallisticSkillAdv)</td>
+                            <td>@(Model.Characteristics.Strength + Model.Characteristics.StrengthAdv)</td>
+                            <td>@(Model.Characteristics.Toughness + Model.Characteristics.ToughnessAdv)</td>
+                            <td>@(Model.Characteristics.Agility + Model.Characteristics.AgilityAdv)</td>
+                            <td>@(Model.Characteristics.Initiattive + Model.Characteristics.InitiattiveAdv)</td>
+                            <td>@(Model.Characteristics.Dexterity + Model.Characteristics.DexterityAdv)</td>
+                            <td>@(Model.Characteristics.Intelligence + Model.Characteristics.IntelligenceAdv)</td>
+                            <td>@(Model.Characteristics.Willpower + Model.Characteristics.WillpowerAdv)</td>
+                            <td>@(Model.Characteristics.Fellowship + Model.Characteristics.FellowshipAdv)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Fate and Resilience --> 
+            <div class="col-4">
+                <div class="row">
+                   <p class="h4 fw-bold text-center">Bohater i Przenzaczenie</p>
+                   <table class="table table-bordered">
+                       <thead>
+                           <tr>
+                               <th scope=col>Pkt Bohatera</th>
+                               <th scope=col>Pkt Determinacji</th>                           
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr class="text-center">
+                                <td scope="row">3</td>
+                                <td scope="row">3</td>
+                           </tr>
+                           <tr>
+                                <th scope=col>Pkt Przeznaczenia</th>
+                                <th scope=col>Pkt Szczęścia</th>           
+                           </tr>
+                           <tr class="text-center">
+                                <td scope="row">3</td>
+                                <td scope="row">3</td>
+                           </tr>
+                       </tbody>
+                   </table>
+                </div>
+                <div class="row">
+                </div>
+            </div>
+            
+        </div>
+        <div  class="row">
+            <!-- Basic Skills --> 
+            <p class="h4 fw-bold text-center">Umiejętności podstawowe</p>
+            <div class="col-4">
+                <table class="table table-bordered">
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Character Portrait --> 
+    <div class="col-4 bg-black">
+    </div>
+</div>
