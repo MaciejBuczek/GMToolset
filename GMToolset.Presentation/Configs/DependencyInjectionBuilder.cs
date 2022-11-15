@@ -41,7 +41,7 @@ namespace GMToolset.Presentation.Configs
             builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(Services.Data.Constants)));
 
             //Managers
-            builder.Services.AddTransient<IRoleManager, RoleManager>();
+            builder.Services.AddTransient<IRoleControllerManager, RoleControllerManager>();
 
             //Services
             builder.Services.AddTransient<IModelService<GMTModels.Warhammer4.CharacterSheet>, CharacterSheetService>();

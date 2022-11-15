@@ -2,7 +2,7 @@
 
 namespace GMToolset.Presentation.Helpers.Intefaces
 {
-    public interface IRoleManager
+    public interface IRoleControllerManager
     {
         Task<UserRoleViewModel> CreateUserRoleViewModel(
             string sortOrder,

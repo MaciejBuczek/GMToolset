@@ -7,9 +7,9 @@ namespace GMToolset.Presentation.Controllers
 {
     public class RoleController : Controller
     {
-        private readonly IRoleManager _roleManager;
+        private readonly IRoleControllerManager _roleManager;
 
-        public RoleController(IRoleManager roleManager)
+        public RoleController(IRoleControllerManager roleManager)
         {
             _roleManager = roleManager;
         }

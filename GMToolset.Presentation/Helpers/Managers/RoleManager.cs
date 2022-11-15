@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace GMToolset.Presentation.Helpers.Managers
 {
-    public class RoleManager : IRoleManager
+    public class RoleControllerManager : IRoleControllerManager
     {
         #region consts
         const string roleAdmin = "Admin";
@@ -14,7 +14,7 @@ namespace GMToolset.Presentation.Helpers.Managers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public RoleManager(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
+        public RoleControllerManager(RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;
@@ -28,6 +28,7 @@ namespace GMToolset.Presentation.Helpers.Managers
         {
             var vm = new UserRoleViewModel();
             var counter = 1;
+            int pageSize = 10;
 
             foreach (var role in _roleManager.Roles)
             {
@@ -38,18 +39,10 @@ namespace GMToolset.Presentation.Helpers.Managers
                 });
             }
 
-            if (searchString != null)
-            {
-                pageNumber = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
             var users = new List<SimpleUser>();
 
-            foreach (var user in _userManager.Users.ToList())
+            var identityUsers = await PaginatedList<IdentityUser>.CreateAsync(_userManager.Users.AsEnumerable(), pageNumber ?? 1, pageSize);
+            foreach (var user in identityUsers)
             {
                 users.Add(new SimpleUser()
                 {
@@ -88,8 +81,6 @@ namespace GMToolset.Presentation.Helpers.Managers
                     users = users.OrderBy(u => u.Username).ToList();
                     break;
             }
-
-            int pageSize = 10;
 
             vm.Users = await PaginatedList<SimpleUser>.CreateAsync(users, pageNumber ?? 1, pageSize);
 
