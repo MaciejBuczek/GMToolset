@@ -1,10 +1,13 @@
 ﻿using GMToolset.Presentation.Helpers.Intefaces;
 using GMToolset.Presentation.ViewModels.Role;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace GMToolset.Presentation.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class RoleController : Controller
     {
         private readonly IRoleControllerManager _roleManager;

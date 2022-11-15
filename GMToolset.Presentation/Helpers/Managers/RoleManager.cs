@@ -27,7 +27,6 @@ namespace GMToolset.Presentation.Helpers.Managers
             int? pageNumber)
         {
             var vm = new UserRoleViewModel();
-            var counter = 1;
             int pageSize = 10;
 
             foreach (var role in _roleManager.Roles)
@@ -46,13 +45,11 @@ namespace GMToolset.Presentation.Helpers.Managers
             {
                 users.Add(new SimpleUser()
                 {
-                    No = counter,
                     Id = user.Id,
                     Username = user.UserName,
                     Email = user.Email,
                     IsAdmin = await _userManager.IsInRoleAsync(user, roleAdmin)
                 });
-                counter++;
             }
 
             if (!String.IsNullOrEmpty(searchString))
