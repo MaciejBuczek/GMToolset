@@ -4,7 +4,7 @@ html {
 
 @media (min-width: 768px) {
   html {
-    font-size: 16px;
+    font-size: 20px;
   }
 }
 
@@ -25,6 +25,10 @@ body {
     font-family: 'romantik';
     src: url('../fonts/Romantik.ttf');
 }
+@font-face {
+    font-family: 'philosopher-regular';
+    src: url('../fonts/Philosopher-Regular.ttf');
+}
 
 .living-stone{
     font-family: living-stone;
@@ -32,4 +36,36 @@ body {
 
 .romantik{
     font-family : romantik;
+}
+
+.philosopher-regular{
+    font-family : philosopher-regular;
+}
+
+h1 {
+    font-family: living-stone;
+}
+
+p {
+    font-family: philosopher-regular;
+}
+
+button {
+    font-family: philosopher-regular;
+}
+
+a {
+    font-family: philosopher-regular;
+}
+
+label {
+    font-family: philosopher-regular;
+}
+
+th {
+    font-family: philosopher-regular;
+}
+
+td {
+    font-family: philosopher-regular;
 }

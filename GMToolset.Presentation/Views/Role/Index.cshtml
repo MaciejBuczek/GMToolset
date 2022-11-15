@@ -1,0 +1,142 @@
+﻿@using GMToolset.Presentation.ViewModels.Role;
+@model UserRoleViewModel
+@{
+    ViewData["Title"] = "ROLES";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="fancy-border">
+
+                @*! - Create new role - !*@
+
+                <h1 class="text-center">Create new role</h1>
+                <form asp-action="Create" method="post">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input name="name" class="form-control" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add role</button>
+                </form>
+            </div>
+
+            <div class="fancy-border">
+                <form asp-action="Index" method="get">
+                <div class="form-actions no-color">
+                    <p>
+                        Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                        <input type="submit" value="Search" class="btn btn-default" /> |
+                        <a asp-action="Index">Back to Full List</a>
+                    </p>
+                </div>
+                </form>
+
+                @*! - Users list - !*@
+
+                <form asp-controller="Role" asp-action="UpdateUsersRoles" method="post">
+                        <table class="table table-striped col-8">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">
+                                        <a asp-action="Index" asp-route-sortOrder="@ViewData["UsernameSortParm"]">Username</a>
+                                    </th>
+                                    <th scope="col">
+                                        <a asp-action="Index" asp-route-sortOrder="@ViewData["EmailSortParm"]">E-mail</a>
+                                    </th>
+                                    <th scope="col">
+                                        <a asp-action="Index" asp-route-sortOrder="@ViewData["AdminSortParm"]">Admin</a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @for (int i = 0; i < Model.Users.Items.Count; i++)
+                            {
+                                <tr>
+                                    <td class="form-label">@Model.Users.Items[i].No</td>
+                                    <td class="form-label">@Model.Users.Items[i].Username</td>
+                                    <td class="form-label">@Model.Users.Items[i].Email</td>
+                                    <td class="form-label">
+                                        <input asp-for="@Model.Users.Items[i].IsAdmin" class="form-check-input" />
+                                        <input type="hidden" asp-for="@Model.Users.Items[i].Id" />
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+
+                    @{
+                        var prevDisabled = !Model.Users.HasPreviousPage ? "disabled" : "";
+                        var nextDisabled = !Model.Users.HasNextPage ? "disabled" : "";
+                    }
+
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-pageNumber="@(Model.Users.PageIndex - 1)"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       class="btn btn-default @prevDisabled">
+                        Previous
+                    </a>
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-pageNumber="@(Model.Users.PageIndex + 1)"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       class="btn btn-default @nextDisabled">
+                        Next
+                    </a>
+                        <input type="submit" class="btn btn-success" value="Update" style="float: right"/>
+                    </form>
+                </div>
+        </div>
+
+        <div class="col">
+            <div class="fancy-border">
+
+            @*! - Roles list and edit/delete - !*@
+
+            <table class="table col-3">
+                <thead>
+                    <tr>
+                        <td><h5>Role</h5></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var role in Model.Roles)
+                {
+                    <tr>
+                        <td>@role.RoleName</td>
+                        <td class="text-center">
+                                <a asp-action="EditRole" asp-route-id="@role.Id" class="btn btn-primary">Edit</a>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#@role.RoleName">
+                                  Delete
+                                </button>
+
+                                <div class="modal fade" id="@role.RoleName" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Removing role</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body text-center">
+                                                <p>You are about to delete the role</p>
+                                                <p>@role.RoleName</p>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <a asp-action="DeleteRole" asp-route-id="@role.Id" class="btn btn-danger">Delete</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
