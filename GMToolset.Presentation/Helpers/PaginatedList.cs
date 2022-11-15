@@ -1,33 +1,48 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace GMToolset.Presentation.Helpers
+﻿namespace GMToolset.Presentation.Helpers
 {
-    public class PaginatedList<T> : List<T>
+    public class PaginatedList<T>
     {
-        public int PageIndex { get; private set; }
-        public int TotalPages { get; private set; }
-
-        public PaginatedList(List<T> items, int count, int pageIndex, int pageSize)
+        public int PageIndex { get; set; }
+        public int PageSize { get; set; }
+        public int TotalCount { get; set; }
+        public int TotalPages { get; set; }
+        public List<T> Items { get; set; }
+        public bool HasNextPage
         {
-            PageIndex = pageIndex;
-            TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-
-            this.AddRange(items);
+            get { return PageIndex < TotalPages; }
         }
+
+        public bool HasPreviousPage
+        {
+            get { return PageIndex > 1; }
+        }
+
         public PaginatedList()
         {
 
         }
 
-        public bool HasPreviousPage => PageIndex > 1;
-
-        public bool HasNextPage => PageIndex < TotalPages;
-
-        public static async Task<PaginatedList<T>> CreateAsync(IEnumerable<T> source, int pageIndex, int pageSize)
+        public PaginatedList(IQueryable<T> source, int pageIndex, int pageSize)
         {
-            var count = source.Count();
-            var items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            return new PaginatedList<T>(items, count, pageIndex, pageSize);
+            var skip = (PageIndex - 1) * PageSize;
+            PageIndex = pageIndex;
+            PageSize = pageSize;
+            TotalCount = source.Count();
+            TotalPages = (int)Math.Ceiling(TotalCount / (double)PageSize);
+
+            Items = source.Skip(skip).Take(pageSize).ToList();
+        }
+
+        public PaginatedList(IEnumerable<T> source, int pageIndex, int pageSize)
+        {
+            var skip = (PageIndex - 1) * PageSize;
+            PageIndex = pageIndex;
+            PageSize = pageSize;
+            var enumerable = source.ToList();
+            TotalCount = enumerable.Count();
+            TotalPages = (int)Math.Ceiling(TotalCount / (double)PageSize);
+
+            Items = enumerable.Skip(skip).Take(pageSize).ToList();
         }
     }
 }

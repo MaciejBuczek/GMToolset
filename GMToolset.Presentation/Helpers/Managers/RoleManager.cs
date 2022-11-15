@@ -41,8 +41,8 @@ namespace GMToolset.Presentation.Helpers.Managers
 
             var users = new List<SimpleUser>();
 
-            var identityUsers = await PaginatedList<IdentityUser>.CreateAsync(_userManager.Users.AsEnumerable(), pageNumber ?? 1, pageSize);
-            foreach (var user in identityUsers)
+            var identityUsers = new PaginatedList<IdentityUser>(_userManager.Users.AsEnumerable(), pageNumber ?? 1, pageSize);
+            foreach (var user in identityUsers.Items)
             {
                 users.Add(new SimpleUser()
                 {
@@ -82,7 +82,7 @@ namespace GMToolset.Presentation.Helpers.Managers
                     break;
             }
 
-            vm.Users = await PaginatedList<SimpleUser>.CreateAsync(users, pageNumber ?? 1, pageSize);
+            vm.Users = new PaginatedList<SimpleUser>(users, pageNumber ?? 1, pageSize);
 
             return vm;
         }
@@ -133,15 +133,15 @@ namespace GMToolset.Presentation.Helpers.Managers
         {
             try
             {
-                for (int i = 0; i < vm.Users.Count; i++)
+                foreach (var simpleUser in vm.Users.Items)
                 {
-                    var user = await _userManager.FindByIdAsync(vm.Users[i].Id);
+                    var user = await _userManager.FindByIdAsync(simpleUser.Id);
 
-                    if (vm.Users[i].IsAdmin && !(await _userManager.IsInRoleAsync(user, roleAdmin)))
+                    if (simpleUser.IsAdmin && !(await _userManager.IsInRoleAsync(user, roleAdmin)))
                     {
                         await _userManager.AddToRoleAsync(user, roleAdmin);
                     }
-                    else if (!vm.Users[i].IsAdmin && await _userManager.IsInRoleAsync(user, roleAdmin))
+                    else if (!simpleUser.IsAdmin && await _userManager.IsInRoleAsync(user, roleAdmin))
                     {
                         await _userManager.RemoveFromRoleAsync(user, roleAdmin);
                     }
