@@ -12,5 +12,7 @@
         public SkillType Type { get; set; }
 
         public Translation Name { get; set; }
+
+        public Characteristic Characteristic { get; set; }
     }
 }

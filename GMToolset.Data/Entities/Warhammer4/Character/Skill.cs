@@ -17,5 +17,8 @@ namespace GMToolset.Data.Entities.Warhammer4.Character
 
         [Required]
         public Translation Name { get; set; }
+
+        [Required]
+        public Characteristic Characteristic { get; set; }
     }
 }
