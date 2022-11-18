@@ -1,0 +1,53 @@
+﻿@model GMToolset.Presentation.ViewModels.Warhammer4.CRUD.TranslationBasedManageVM<GMToolset.Services.Models.Warhammer4.Character.Skills.SkillType>
+@{
+    var counter = 1;
+}
+<div id="manage-token">
+    @Html.AntiForgeryToken()
+</div>
+<input id="manage-controller" type="hidden" value="SkillType" />
+<input id="manage-patch" type="hidden" value="edit" />
+<input id="manage-delete" type="hidden" value="remove" />
+
+<table class="table table-bordered align-middle">
+    <thead>
+        <tr class="text-center">
+            <th scope="col">No.</th>
+            <th scope="col">Name Pl</th>
+            <th scope="col">Name Eng</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <form asp-controller="SkillType" asp-action="Add" method="post">
+        <tr>
+            <td></td>
+            <td>
+                <input class="form-control" asp-for="ContentPl" />
+                <span asp-validation-for="ContentPl" class="text-danger"></span>
+            </td>
+            <td>
+                <input class="form-control" asp-for="ContentEng" />
+                <span asp-validation-for="ContentEng" class="text-danger"></span>
+            </td>
+            <td class="text-center d-grid">
+                <input type="submit" class="btn btn-success btn-block" value="Add" />
+            </td>
+        </tr>
+        </form>
+        @if (Model.Entries != null)
+        {
+            foreach (var skillType in Model.Entries)
+            {
+                <tr class="manage-click data-row simple-hover" data-id="@skillType.Id" data-object-name="Name" style="cursor:pointer">
+                    <td class="text-center">@(counter++)</td>
+                    <td class="manage-field" data-field-name="ContentPl">@skillType.Name.ContentPl</td>
+                    <td class="manage-field" data-field-name="ContentEng">@skillType.Name.ContentEng</td>
+                    <td width="15%">
+                        <div class="manage-action-box d-flex flex-row justify-content-center align-items-center gap-2"></div>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
