@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GMToolset.Presentation.Controllers
 {
-    public class SkillTypesController : Controller
+    public class SkillTypeController : Controller
     {
         private readonly IModelService<SkillType> _skillTypeService;
 
-        public SkillTypesController(IModelService<SkillType> skillTypeService)
+        public SkillTypeController(IModelService<SkillType> skillTypeService)
         {
             _skillTypeService = skillTypeService;
         }
