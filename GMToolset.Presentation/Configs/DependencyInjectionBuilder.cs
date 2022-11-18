@@ -10,6 +10,7 @@ using GMToolset.Services.Models.Warhammer4.Character.Skills;
 using GMToolset.Services.Services;
 using GMToolset.Services.Services.Model_Services.QuickBattleManager;
 using GMToolset.Services.Services.Model_Services.Warhammer4;
+using GMToolset.Services.Services.Model_Services.Warhammer4.Skills;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
@@ -52,6 +53,7 @@ namespace GMToolset.Presentation.Configs
             builder.Services.AddTransient<IModelService<_ModelsWh4.Character.CharacterSheet>, CharacterSheetService>();
             builder.Services.AddTransient<IModelService<_ModelsWh4.Character.Characteristic>, CharacteristicService>();
             builder.Services.AddTransient<IModelService<_ModelsWh4.Character.Skills.Skill>, SkillService>();
+            builder.Services.AddTransient<IModelService<_ModelsWh4.Character.Skills.SkillType>, SkillTypeService>();
 
             //Sessions
             builder.Services.AddTransient<IModelService<_Models.QuickBattleManager.Participant>, ParticipantService>();

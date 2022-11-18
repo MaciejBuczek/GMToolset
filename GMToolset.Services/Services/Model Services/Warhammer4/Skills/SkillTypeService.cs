@@ -7,7 +7,7 @@ using _Models = GMToolset.Services.Models.Warhammer4.Character.Skills;
 
 namespace GMToolset.Services.Services.Model_Services.Warhammer4.Skills
 {
-    internal class SkillTypeService : ModelServiceBase<_Entities.SkillType>, IModelService<_Models.SkillType>
+    public class SkillTypeService : ModelServiceBase<_Entities.SkillType>, IModelService<_Models.SkillType>
     {
         public SkillTypeService(IRepository<_Entities.SkillType> repository, IMapper mapper) : base(repository, mapper)
         {
