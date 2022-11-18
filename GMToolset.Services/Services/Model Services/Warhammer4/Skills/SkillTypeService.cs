@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using GMToolset.Data.Repositories.Interfaces;
 using GMToolset.Services.Interfaces;
-
+using GMToolset.Services.Models.Warhammer4;
 using _Entities = GMToolset.Data.Entities.Warhammer4.Character.Skills;
 using _Models = GMToolset.Services.Models.Warhammer4.Character.Skills;
 
@@ -9,8 +9,11 @@ namespace GMToolset.Services.Services.Model_Services.Warhammer4.Skills
 {
     public class SkillTypeService : ModelServiceBase<_Entities.SkillType>, IModelService<_Models.SkillType>
     {
-        public SkillTypeService(IRepository<_Entities.SkillType> repository, IMapper mapper) : base(repository, mapper)
+        private readonly IModelService<Translation> _translationService;
+
+        public SkillTypeService(IRepository<_Entities.SkillType> repository, IMapper mapper, IModelService<Translation> translationService) : base(repository, mapper)
         {
+            _translationService = translationService;
         }
 
         public void Add(_Models.SkillType entity)
@@ -35,7 +38,12 @@ namespace GMToolset.Services.Services.Model_Services.Warhammer4.Skills
 
         public void Update(_Models.SkillType entity)
         {
-            _repository.Update(_mapper.Map<_Entities.SkillType>(entity));
+            var skillType = GetById(entity.Id);
+
+            skillType.Name.ContentPl = entity.Name.ContentPl;
+            skillType.Name.ContentEng = entity.Name.ContentEng;
+
+            _translationService.Update(skillType.Name);
         }
     }
 }

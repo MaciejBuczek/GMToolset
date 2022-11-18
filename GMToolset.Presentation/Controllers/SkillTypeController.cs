@@ -40,7 +40,7 @@ namespace GMToolset.Presentation.Controllers
         {
             if (ModelState.IsValid)
             {
-                var characteristic = new SkillType
+                var skillType = new SkillType
                 {
                     Name = new Translation
                     {
@@ -48,7 +48,7 @@ namespace GMToolset.Presentation.Controllers
                         ContentEng = vm.ContentEng
                     }
                 };
-                _skillTypeService.Add(characteristic);
+                _skillTypeService.Add(skillType);
                 return RedirectToAction(nameof(Manage));
 
             }
