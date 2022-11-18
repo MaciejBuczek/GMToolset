@@ -1,4 +1,6 @@
-﻿namespace GMToolset.Services.Models.Warhammer4.Character
+﻿using GMToolset.Services.Models.Warhammer4.Character.Skills;
+
+namespace GMToolset.Services.Models.Warhammer4.Character
 {
     public class CharacterSkills
     {

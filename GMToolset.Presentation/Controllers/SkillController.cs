@@ -1,7 +1,7 @@
 ﻿using GMToolset.Presentation.ViewModels.Warhammer4.CRUD;
 using GMToolset.Services.Interfaces;
 using GMToolset.Services.Models.Warhammer4;
-using GMToolset.Services.Models.Warhammer4.Character;
+using GMToolset.Services.Models.Warhammer4.Character.Skills;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMToolset.Presentation.Controllers

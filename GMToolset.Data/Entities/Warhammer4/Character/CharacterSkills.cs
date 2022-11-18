@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using GMToolset.Data.Entities.Warhammer4.Character.Skills;
 
 namespace GMToolset.Data.Entities.Warhammer4.Character
 {

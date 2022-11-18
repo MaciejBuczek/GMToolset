@@ -1,4 +1,4 @@
-﻿using GMToolset.Services.Models.Warhammer4.Character;
+﻿using GMToolset.Services.Models.Warhammer4.Character.Skills;
 using System.ComponentModel.DataAnnotations;
 
 namespace GMToolset.Presentation.ViewModels.Warhammer4.CRUD
@@ -15,7 +15,7 @@ namespace GMToolset.Presentation.ViewModels.Warhammer4.CRUD
         [MaxLength(255)]
         public string ContentEng { get; set; } = string.Empty;
 
-        public SkillType Type { get; set; }
+        public Guid SkillType { get; set; }
 
         public Guid CharacteristicId { get; set; }
 

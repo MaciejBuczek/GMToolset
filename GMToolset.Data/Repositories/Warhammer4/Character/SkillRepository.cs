@@ -1,4 +1,4 @@
-﻿using GMToolset.Data.Entities.Warhammer4.Character;
+﻿using GMToolset.Data.Entities.Warhammer4.Character.Skills;
 using GMToolset.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
