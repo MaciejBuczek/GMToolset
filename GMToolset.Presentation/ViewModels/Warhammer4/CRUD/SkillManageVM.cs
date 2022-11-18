@@ -18,5 +18,7 @@ namespace GMToolset.Presentation.ViewModels.Warhammer4.CRUD
         public SkillType Type { get; set; }
 
         public Guid CharacteristicId { get; set; }
+
+        public IEnumerable<Skill>? Skills { get; set; }
     }
 }

@@ -4,7 +4,7 @@ namespace GMToolset.Data.Entities.Warhammer4.Character
 {
     public enum SkillType
     {
-        Base, Advanced, Grouped
+        Basic, Advanced, Grouped
     }
 
     public class Skill
