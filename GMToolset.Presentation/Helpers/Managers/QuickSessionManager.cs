@@ -4,7 +4,7 @@
     {
         public QuickSessionManager()
         {
-            _quickSessionDic 
+             
         }
     }
 }

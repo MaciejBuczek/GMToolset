@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using GMToolset.Data.Entities.Warhammer4.Character.Skills;
-using GMToolset.Services.Models.Warhammer4.Character;
-using GMToolset.Services.Models.Warhammer4.Character.Skills;
+
+using _Entities = GMToolset.Data.Entities.Warhammer4.Character;
+using _Models = GMToolset.Services.Models.Warhammer4.Character;
 
 namespace GMToolset.Services.Data.AutoMapperProfiles.Warhammer4
 {
@@ -9,15 +9,15 @@ namespace GMToolset.Services.Data.AutoMapperProfiles.Warhammer4
     {
         public CharacterProfile()
         {
-            CreateMap<GMToolset.Data.Entities.Warhammer4.Character.CharacterSheet, CharacterSheet>().ReverseMap();
+            CreateMap<_Entities.CharacterSheet, _Models.CharacterSheet>().ReverseMap();
 
-            CreateMap<GMToolset.Data.Entities.Warhammer4.Character.Skills.Skill, Skill>().ReverseMap();
-            CreateMap<GMToolset.Data.Entities.Warhammer4.Character.Skills.SkillType, SkillType>().ReverseMap();
+            CreateMap<_Entities.Skills.Skill, _Models.Skills.Skill>().ReverseMap();
+            CreateMap<_Entities.Skills.SkillType, _Models.Skills.SkillType>().ReverseMap();
 
-            CreateMap<GMToolset.Data.Entities.Warhammer4.Character.Characteristic, Characteristic>().ReverseMap();
+            CreateMap<_Entities.Characteristic, _Models.Characteristic>().ReverseMap();
 
-            CreateMap<GMToolset.Data.Entities.Warhammer4.Character.CharacterSkills, CharacterSkills>().ReverseMap();
-            CreateMap<GMToolset.Data.Entities.Warhammer4.Character.CharacterCharacteristics, Characteristics>().ReverseMap();
+            CreateMap<_Entities.CharacterSkills, _Models.CharacterSkills>().ReverseMap();
+            CreateMap<_Entities.CharacterCharacteristics, _Models.Characteristics>().ReverseMap();
         }
     }
 }

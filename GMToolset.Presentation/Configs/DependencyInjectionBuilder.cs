@@ -4,6 +4,7 @@ using GMToolset.Data.Repositories;
 using GMToolset.Data.Repositories.Interfaces;
 using GMToolset.Data.Repositories.Warhammer4;
 using GMToolset.Data.Repositories.Warhammer4.Character;
+using GMToolset.Data.Repositories.Warhammer4.Character.Skills;
 using GMToolset.Services.Interfaces;
 using GMToolset.Services.Models.Warhammer4.Character.Skills;
 using GMToolset.Services.Services;
@@ -61,7 +62,8 @@ namespace GMToolset.Presentation.Configs
             builder.Services.AddTransient<IRepository<_EntitiesWh4.Translation>, TranslationRepository>();
             builder.Services.AddTransient<IRepository<_EntitiesWh4.Character.CharacterSheet>, CharacterSheetRepository>();
             builder.Services.AddTransient<IRepository<_EntitiesWh4.Character.Characteristic>, CharacteristicRepository>();
-            builder.Services.AddTransient<IRepository<Skill>, SkillRepository>();
+            builder.Services.AddTransient<IRepository<_EntitiesWh4.Character.Skills.Skill>, SkillRepository>();
+            builder.Services.AddTransient<IRepository<_EntitiesWh4.Character.Skills.SkillType>, SkillTypeRepository>();
 
             //Sessions
             builder.Services.AddTransient<IRepository<_Entities.QuickBattleManager.Participant>, ParticipantRepository>();

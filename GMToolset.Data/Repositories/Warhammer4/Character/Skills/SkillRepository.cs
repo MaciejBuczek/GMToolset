@@ -2,7 +2,7 @@
 using GMToolset.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace GMToolset.Data.Repositories.Warhammer4.Character
+namespace GMToolset.Data.Repositories.Warhammer4.Character.Skills
 {
     public class SkillRepository : RepositoryBase, IRepository<Skill>
     {
