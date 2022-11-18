@@ -30,9 +30,16 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @if (User?.Identity?.IsAuthenticated == true)
+                        {
+@*                            if (User.)
+                            {
+                                
+                            }*@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="QuickSession" asp-action="Create">Quick Session</a>
                         </li>
+                        }
                         @if (User?.IsInRole("Admin") == true)
                         {
                             <li class="nav-item">

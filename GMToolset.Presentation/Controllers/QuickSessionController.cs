@@ -1,10 +1,12 @@
 ﻿using GMToolset.Services.Interfaces;
 using GMToolset.Services.Models.QuickBattleManager;
 using GMToolset.Services.Services.Model_Services.QuickBattleManager;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GMToolset.Presentation.Controllers
 {
+    [Authorize]
     public class QuickSessionController : Controller
     {
         private readonly ILogger<QuickSessionController> _logger;
