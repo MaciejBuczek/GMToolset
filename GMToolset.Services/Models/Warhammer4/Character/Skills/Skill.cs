@@ -1,9 +1,5 @@
-﻿namespace GMToolset.Services.Models.Warhammer4.Character
+﻿namespace GMToolset.Services.Models.Warhammer4.Character.Skills
 {
-    public enum SkillType
-    {
-        Base, Advanced, Grouped
-    }
 
     public class Skill
     {
@@ -12,5 +8,7 @@
         public SkillType Type { get; set; }
 
         public Translation Name { get; set; }
+
+        public Characteristic Characteristic { get; set; }
     }
 }

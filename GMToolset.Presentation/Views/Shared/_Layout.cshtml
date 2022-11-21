@@ -30,15 +30,31 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @if (User?.Identity?.IsAuthenticated == true)
+                        {
+@*                            if (User.)
+                            {
+                                
+                            }*@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="QuickSession" asp-action="Create">Quick Session</a>
                         </li>
+                        }
                         @if (User?.IsInRole("Admin") == true)
                         {
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="Role" asp-action="Index">Roles</a>
                             </li>
                         }
+                        <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                    <li><a class="dropdown-item" asp-controller="Characteristic" asp-action="Manage">Characteristics</a></li>
+                                    <li><a class="dropdown-item" asp-controller="SkillType" asp-action="Manage">SkillTypes</a></li>
+                                </ul>
+                        </li>
                     </ul>
                     <partial name="_LanguageToggle" />
                     <partial name="_LoginPartial" />

@@ -2,10 +2,10 @@
 using GMToolset.Data.Repositories.Interfaces;
 using GMToolset.Services.Interfaces;
 
-using _Entities = GMToolset.Data.Entities.Warhammer4.Character;
-using _Models = GMToolset.Services.Models.Warhammer4.Character;
+using _Entities = GMToolset.Data.Entities.Warhammer4.Character.Skills;
+using _Models = GMToolset.Services.Models.Warhammer4.Character.Skills;
 
-namespace GMToolset.Services.Services.Model_Services.Warhammer4
+namespace GMToolset.Services.Services.Model_Services.Warhammer4.Skills
 {
     public class SkillService : ModelServiceBase<_Entities.Skill>, IModelService<_Models.Skill>
     {

@@ -3,6 +3,7 @@ using System;
 using GMToolset.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GMToolset.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221116204637_AddedUserToQuickSession")]
+    partial class AddedUserToQuickSession
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,46 +263,23 @@ namespace GMToolset.Data.Migrations
                     b.ToTable("CharacterSkills");
                 });
 
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.Skills.Skill", b =>
+            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.Skill", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("CharacteristicId")
-                        .HasColumnType("uuid");
-
                     b.Property<Guid>("NameId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("TypeId")
-                        .HasColumnType("uuid");
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CharacteristicId");
-
                     b.HasIndex("NameId");
-
-                    b.HasIndex("TypeId");
 
                     b.ToTable("Skills");
-                });
-
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.Skills.SkillType", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("NameId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NameId");
-
-                    b.ToTable("SkillTypes");
                 });
 
             modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Translation", b =>
@@ -574,7 +553,7 @@ namespace GMToolset.Data.Migrations
                         .WithMany("Skills")
                         .HasForeignKey("CharacterSheetId");
 
-                    b.HasOne("GMToolset.Data.Entities.Warhammer4.Character.Skills.Skill", "Skill")
+                    b.HasOne("GMToolset.Data.Entities.Warhammer4.Character.Skill", "Skill")
                         .WithMany()
                         .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -583,34 +562,7 @@ namespace GMToolset.Data.Migrations
                     b.Navigation("Skill");
                 });
 
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.Skills.Skill", b =>
-                {
-                    b.HasOne("GMToolset.Data.Entities.Warhammer4.Character.Characteristic", "Characteristic")
-                        .WithMany()
-                        .HasForeignKey("CharacteristicId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GMToolset.Data.Entities.Warhammer4.Translation", "Name")
-                        .WithMany()
-                        .HasForeignKey("NameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GMToolset.Data.Entities.Warhammer4.Character.Skills.SkillType", "Type")
-                        .WithMany()
-                        .HasForeignKey("TypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Characteristic");
-
-                    b.Navigation("Name");
-
-                    b.Navigation("Type");
-                });
-
-            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.Skills.SkillType", b =>
+            modelBuilder.Entity("GMToolset.Data.Entities.Warhammer4.Character.Skill", b =>
                 {
                     b.HasOne("GMToolset.Data.Entities.Warhammer4.Translation", "Name")
                         .WithMany()
