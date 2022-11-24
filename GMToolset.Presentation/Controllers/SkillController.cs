@@ -1,6 +1,7 @@
 ﻿using GMToolset.Presentation.ViewModels.Warhammer4.CRUD;
 using GMToolset.Services.Interfaces;
 using GMToolset.Services.Models.Warhammer4;
+using GMToolset.Services.Models.Warhammer4.Character;
 using GMToolset.Services.Models.Warhammer4.Character.Skills;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,11 +9,16 @@ namespace GMToolset.Presentation.Controllers
 {
     public class SkillController : Controller
     {
+        private readonly IModelService<Characteristic> _characteristicService;
         private readonly IModelService<Skill> _skillService;
+        private readonly IModelService<SkillType> _skillTypeService;
 
-        public SkillController(IModelService<Skill> skillService)
+
+        public SkillController( IModelService<Skill> skillService, IModelService<SkillType> skillTypeService, IModelService<Characteristic> characteristicService)
         {
             _skillService = skillService;
+            _skillTypeService = skillTypeService;
+            _characteristicService = characteristicService;
         }
 
         [HttpGet]
@@ -22,7 +28,9 @@ namespace GMToolset.Presentation.Controllers
             {
                 ContentEng = String.Empty,
                 ContentPl = String.Empty,
-                Skills = _skillService.GetAll()
+                Characteristics = _characteristicService.GetAll(),
+                Skills = _skillService.GetAll(),
+                SkillTypes = _skillTypeService.GetAll()
             };
             ModelState.Clear();
             return View(vm);
