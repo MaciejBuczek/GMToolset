@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GMToolset.Presentation.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class QuickSessionController : Controller
     {
         private readonly ILogger<QuickSessionController> _logger;
@@ -20,7 +20,8 @@ namespace GMToolset.Presentation.Controllers
         // GET: QuickSessionController
         public ActionResult Index()
         {
-            return View(_quickSessionService.GetAll());
+            return View();
+            //return View(_quickSessionService.GetAll());
         }
 
         // GET: QuickSessionController/Details/5

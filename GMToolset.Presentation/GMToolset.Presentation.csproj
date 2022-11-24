@@ -33,10 +33,6 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Hubs\" />
-  </ItemGroup>
-
   <Target Name="PrePublishTarget" AfterTargets="Publish">
     <Exec Command="dotnet ef database update" />
   </Target>

@@ -24,7 +24,7 @@ namespace GMToolset.Data
 
         public DbSet<Translation> Translations { get; set; }
 
-        public DbSet<Participant> Participant { get; set; }
+        public DbSet<Participant> Participants { get; set; }
 
         public DbSet<QuickSession> QuickSessions { get; set; }
 

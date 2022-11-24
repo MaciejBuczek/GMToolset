@@ -1,0 +1,71 @@
+﻿@page
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-2">Name</div>
+        <div class="col-4"><input class="participant-create" type="text" data-object-name="Name" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">Max Hp</div>
+        <div class="col-4"><input class="participant-create" type="text" data-object-name="MaxHp" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">Current Hp</div>
+        <div class="col-4"><input class="participant-create" type="text" data-object-name="CurrentHp" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">Is Mp</div>
+        <div class="col-4"><input class="participant-create" type="checkbox" data-object-name="IsMpApplicable" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">MaxMp</div>
+        <div class="col-4"><input class="participant-create" type="text" data-object-name="MaxMp" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">Current Mp</div>
+        <div class="col-4"><input class="participant-create" type="text" data-object-name="CurrentMp" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">Is St</div>
+        <div class="col-4"><input class="participant-create" type="checkbox" data-object-name="IsStApplicable" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">Max St</div>
+        <div class="col-4"><input class="participant-create" type="text" data-object-name="MaxSt" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">Current St</div>
+        <div class="col-4"><input class="participant-create" type="text" data-object-name="CurrentSt" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">Initiative</div>
+        <div class="col-4"><input class="participant-create" type="text" data-object-name="Initiative" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">DamagePerRound</div>
+        <div class="col-4"><input class="participant-create" type="text" data-object-name="DamagePerRound" /></div>
+    </div>
+    <div class="row">
+        <div class="col-2">ExtraInfo</div>
+        <div class="col-4"><input class="participant-create" type="text" data-object-name="ExtraInfo" /></div>
+    </div>
+
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">
+            <input type="button" id="createButton" value="Send Message" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <ul id="participantsList"></ul>
+    </div>
+</div>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/quick-session.js"></script>

@@ -30,6 +30,7 @@ namespace GMToolset.Data.Entities.QuickBattleManager
         [Display(Name = "Extra informations")]
         public string ExtraInfo { get; set; }
         public string Image { get; set; }
+        [Required]
         public QuickSession QuickSession { get; set; }
     }
 }

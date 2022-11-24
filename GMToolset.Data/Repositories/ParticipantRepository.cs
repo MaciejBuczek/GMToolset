@@ -16,7 +16,7 @@ namespace GMToolset.Data.Repositories
 
         public void Delete(Guid id)
         {
-            var entity = _appDbContext.Participant.Find(id);
+            var entity = _appDbContext.Participants.Find(id);
             if (entity != null)
             {
                 _appDbContext.Remove(entity);
@@ -26,17 +26,17 @@ namespace GMToolset.Data.Repositories
 
         public IEnumerable<Participant> GetAll()
         {
-            return _appDbContext.Participant.AsEnumerable();
+            return _appDbContext.Participants.AsEnumerable();
         }
 
         public Participant GetById(Guid id)
         {
-            return _appDbContext.Participant.Find(id);
+            return _appDbContext.Participants.Find(id);
         }
 
         public void Update(Participant entity)
         {
-            if (_appDbContext.Participant.Find(entity.Id) != null)
+            if (_appDbContext.Participants.Find(entity.Id) != null)
             {
                 _appDbContext.Update(entity);
                 _appDbContext.SaveChanges();

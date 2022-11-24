@@ -1,14 +1,11 @@
 using GMToolset.Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using GMToolset.Services.Services;
 using GMToolset.Presentation.Configs;
-using Microsoft.AspNetCore.Mvc.Razor;
-using System.Globalization;
+using GMToolset.Presentation.Hubs;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Options;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +36,8 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.SupportedCultures = supportedCultures;
     options.SupportedUICultures = supportedCultures;
 });
+//builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -65,5 +64,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
+app.MapHub<QuickSessionHub>("/quickSessionHub");
 
 app.Run();
