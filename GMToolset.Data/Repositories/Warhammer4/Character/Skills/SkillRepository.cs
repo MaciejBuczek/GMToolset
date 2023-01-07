@@ -26,6 +26,11 @@ namespace GMToolset.Data.Repositories.Warhammer4.Character.Skills
             }
         }
 
+        public bool Exists(Guid id)
+        {
+            return _appDbContext.Skills.Find(id) == null;
+        }
+
         public IEnumerable<Skill> GetAll()
         {
             return _appDbContext.Skills.Include(x => x.Name).AsEnumerable();

@@ -25,6 +25,11 @@ namespace GMToolset.Data.Repositories.Warhammer4
             }
         }
 
+        public bool Exists(Guid id)
+        {
+            return _appDbContext.Translations.Find(id) != null;
+        }
+
         public IEnumerable<Translation> GetAll()
         {
             return _appDbContext.Translations.AsEnumerable();

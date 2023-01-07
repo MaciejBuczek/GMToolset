@@ -23,6 +23,11 @@ namespace GMToolset.Data.Repositories
             }
         }
 
+        public bool Exists(Guid id)
+        {
+            return _appDbContext.QuickSessions.Find(id) == null;
+        }
+
         public IEnumerable<QuickSession> GetAll()
         {
             return _appDbContext.QuickSessions.AsEnumerable();

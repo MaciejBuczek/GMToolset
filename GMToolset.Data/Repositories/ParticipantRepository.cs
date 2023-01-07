@@ -24,6 +24,11 @@ namespace GMToolset.Data.Repositories
             }
         }
 
+        public bool Exists(Guid id)
+        {
+            return _appDbContext.Participant.Find(id) != null;
+        }
+
         public IEnumerable<Participant> GetAll()
         {
             return _appDbContext.Participant.AsEnumerable();

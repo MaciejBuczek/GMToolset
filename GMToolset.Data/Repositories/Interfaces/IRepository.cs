@@ -2,6 +2,8 @@
 {
     public interface IRepository<T>
     {
+        bool Exists(Guid id);
+
         T GetById(Guid id);
 
         IEnumerable<T> GetAll();

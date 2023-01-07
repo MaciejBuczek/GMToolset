@@ -26,6 +26,11 @@ namespace GMToolset.Data.Repositories.Warhammer4.Character
             }
         }
 
+        public bool Exists(Guid id)
+        {
+            return _appDbContext.Characteristics.Find(id) == null;
+        }
+
         public IEnumerable<Characteristic> GetAll()
         {
             return _appDbContext.Characteristics.Include(x => x.Name).AsEnumerable();
