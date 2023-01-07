@@ -13,5 +13,10 @@ namespace GMToolset.Services.Services.Model_Services
             _repository = repository;
             _mapper = mapper;
         }
+
+        public bool Exists (Guid id)
+        {
+            return _repository.Exists(id);
+        }
     }
 }
