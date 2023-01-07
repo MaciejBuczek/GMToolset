@@ -28,7 +28,7 @@ namespace GMToolset.Data.Repositories.Warhammer4.Character
 
         public bool Exists(Guid id)
         {
-            return _appDbContext.CharacterSheets.Find(id) == null;
+            return _appDbContext.CharacterSheets.Find(id) != null;
         }
 
         public IEnumerable<CharacterSheet> GetAll()
