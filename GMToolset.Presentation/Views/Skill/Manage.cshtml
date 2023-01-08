@@ -1,7 +1,23 @@
 ﻿@using GMToolset.Presentation.ViewModels.Warhammer4.CRUD
+@using GMToolset.Presentation.Helpers.Managers
 @model GMToolset.Presentation.ViewModels.Warhammer4.CRUD.SkillManageVM
 @{
     var counter = 1;
+
+    var currentLanguage = LanguageManager.GetContextLanguage(Context);
+
+    var skillTypeSelectItems = Model.SkillTypes?.Select(x => new SelectListItem
+    {
+        Value = x.Id.ToString(),
+        Text =  currentLanguage == LanguageManager.Language.pl ? x.Name.ContentPl :
+        currentLanguage == LanguageManager.Language.eng ? x.Name.ContentEng : string.Empty
+    });
+    var characteristicSelectItems = Model.Characteristics?.Select(x => new SelectListItem
+    {
+        Value = x.Id.ToString(),
+        Text =  currentLanguage == LanguageManager.Language.pl ? x.Name.ContentPl :
+        currentLanguage == LanguageManager.Language.eng ? x.Name.ContentEng : string.Empty
+    });
 }
 <div id="manage-token">
     @Html.AntiForgeryToken()
@@ -16,12 +32,13 @@
                 <th scope="col">No.</th>
                 <th scope="col">Name Pl</th>
                 <th scope="col">Name Eng</th>
+                <th scope="col">Skill Type</th>
                 <th scope="col">Characteristic</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            <form asp-controller="Characteristic" asp-action="Add" method="post">
+            <form asp-controller="Skill" asp-action="Add" method="post">
                 <tr>
                     <td></td>
                     <td>
@@ -31,6 +48,12 @@
                     <td>
                         <input class="form-control" asp-for="ContentEng" />
                         <span asp-validation-for="ContentEng" class="text-danger"></span>
+                    </td>
+                    <td>
+                        <select class="form-select" asp-for="SkillTypeId" asp-items="skillTypeSelectItems"></select>
+                    </td>
+                    <td>
+                        <select class="form-select" asp-for="CharacteristicId" asp-items="characteristicSelectItems"></select>
                     </td>
                     <td class="text-center d-grid">
                         <input type="submit" class="btn btn-success btn-block" value="Add"/>

@@ -22,12 +22,11 @@ namespace GMToolset.Services.Services.Model_Services.Warhammer4.Skills
 
         public void Add(_Models.Skill entity)
         {
-            var skillType = _skillTypeService.GetById(entity.Type.Id);
-            var characteristic = _characteristicService.GetById(entity.Characteristic.Id);
-            if(skillType != null && characteristic != null)
-            {
-                _repository.Add(_mapper.Map<_Entities.Skill>(entity));
-            }
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            if (!_characteristicService.Exists(entity.CharacteristicId)) throw new ArgumentException("No characteristic found");
+            if (!_skillTypeService.Exists(entity.SkillTypeId)) throw new ArgumentException("No skill found");
+
+            _repository.Add(_mapper.Map<_Entities.Skill>(entity));
         }
 
         public void Delete(Guid id)

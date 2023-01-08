@@ -8,7 +8,7 @@ namespace GMToolset.Presentation.ViewModels.Warhammer4.CRUD
 
         public Guid CharacteristicId { get; set; }
 
-        public Guid SkillcId { get; set; }
+        public Guid SkillTypeId { get; set; }
 
         public IEnumerable<Characteristic>? Characteristics { get; set; }
 

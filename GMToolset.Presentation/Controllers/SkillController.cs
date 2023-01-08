@@ -42,26 +42,29 @@ namespace GMToolset.Presentation.Controllers
         //    return View(nameof(Manage), vm);
         //}
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Add(SkillManageVM vm)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var characteristic = new Characteristic
-        //        {
-        //            Name = new Translation
-        //            {
-        //                ContentPl = vm.ContentPl,
-        //                ContentEng = vm.ContentEng
-        //            }
-        //        };
-        //        _characteristicService.Add(characteristic);
-        //        return RedirectToAction(nameof(Manage));
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Add(SkillManageVM vm)
+        {
+            if (ModelState.IsValid)
+            {
+                var skill = new Skill
+                {
+                    Name = new Translation
+                    {
+                        ContentPl = vm.ContentPl,
+                        ContentEng = vm.ContentEng
+                    },
+                    SkillTypeId= vm.SkillTypeId,
+                    CharacteristicId= vm.CharacteristicId
+                    
+                };
+                _skillService.Add(skill);
+                return RedirectToAction(nameof(Manage));
 
-        //    }
-        //    return RedirectToAction(nameof(ManageResult), vm);
-        //}
+            }
+            return RedirectToAction(nameof(vm), vm);
+        }
 
         //[HttpDelete]
         //[ValidateAntiForgeryToken]

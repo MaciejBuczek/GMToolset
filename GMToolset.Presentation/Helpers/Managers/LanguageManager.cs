@@ -19,7 +19,7 @@
             {
                 case "pl":
                     return Language.pl;
-                case "eng":
+                case "en":
                     return Language.eng;
                 default:
                     return Language.unknown;
